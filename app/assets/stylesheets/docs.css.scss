@@ -1,0 +1,67 @@
+.navbar {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.section_pic {
+  text-align: center;
+  
+  > img {
+    width: 90%;
+  }
+  
+  > div {
+    opacity: 0.6;
+    padding-right: 5px; 
+    position: relative; 
+    text-align: right; 
+    top: -20px; 
+    width: 90%; 
+    margin: 0 auto; 
+    background: rgba(0, 0, 0, 0.9); 
+    color: #ccc;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    
+    > a {
+      color: #fff;
+    }
+  }
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.status {
+  font-size: 20px;
+  margin: 20px 0;
+}
+.spinner .glyphicon {
+  margin-right: 5px;
+  display: inline-block;
+  -webkit-animation: spin 2s infinite linear;
+  -moz-transition: spin 2s infinite linear;
+  -o-transition: spin 2s infinite linear;
+  transition: spin 2s infinite linear;
+}
+.modal-dialog h3 {
+  margin: 0;
+}
+
+#validation_results td {
+  vertical-align: top;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  &.details {
+    padding-left: 15px;
+  }
+}

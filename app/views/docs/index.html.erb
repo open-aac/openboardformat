@@ -1,0 +1,471 @@
+<script type="text/x-handlebars" data-template-name="application">
+   <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">{{t "Toggle navigation" key='toggle_navigation'}}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              {{#link-to 'index' class='navbar-brand'}}{{t "Open Boards" key='open_boards'}}{{/link-to}}
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                {{#link-to 'index' tagName='li' href=false}}{{#link-to 'index'}}{{t "Home" key='home'}}{{/link-to}}{{/link-to}}
+                {{#link-to 'docs' tagName='li' href=false}}{{#link-to 'docs'}}{{t "Docs" key='docs'}}{{/link-to}}{{/link-to}}
+                {{#link-to 'examples' tagName='li' href=false}}{{#link-to 'examples'}}{{t "Examples" key='examples'}}{{/link-to}}{{/link-to}}
+                {{#link-to 'tools' tagName='li' href=false}}{{#link-to 'tools'}}{{t "Tools" key='tools'}}{{/link-to}}{{/link-to}}
+                {{#link-to 'share' tagName='li' href=false}}{{#link-to 'share'}}{{t "Share" key='share'}}{{/link-to}}{{/link-to}}
+              </ul>
+              <div {{bind-attr class="index:hidden"}}>
+                <div style="float: right; margin-top: 15px; padding-right: 25px;">
+                  <iframe
+                    src="https://platform.twitter.com/widgets/tweet_button.html?size=m&url={{unbound escaped_root_url}}&hashtags=openboards&text=OpenBoards%3A%20a%20cross-platform%20AAC%20board%20format%20for%20everyone"
+                    title="Twitter Tweet Button"
+                    frameborder="0"
+                    style="width: 90px; height: 20px; overflow: hidden;">
+                  </iframe>
+                  <iframe style="width: 90px; height: 20px;" frameborder="0" src="http://www.facebook.com/plugins/share_button.php?href={{unbound escaped_root_url}}&layout=button_count&appId=197367153633354"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+  <div class="container">
+    {{ outlet }}
+    <div id="modal">
+    {{outlet modal}}
+    </div>
+    <footer>
+      {{t "OpenBoards is" key='open_boards_is'}}
+      <a href="https://www.github.com/CoughDrop/openboards">{{t "open source" key='open_source'}}</a>{{t ", powered by" key='powered_by'}}
+      <a href="https://www.mycoughdrop.com">{{t "CoughDrop" key='cough_drop'}}</a>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="index">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>{{t "A Board Format for Everyone" key='board_format_for_everyone'}}</h2>
+      <p>
+        {{t "Communication boards are used by AAC apps and devices to make it easier for individuals with complex communication needs to find their words and express themselves more easily. Over time these boards become heavily customized for each individual, and the communicator gets used to the placement and styling of the content on their boards. This is great, but it leads to problems when a user needs to switch apps or migrate from one device to another." key='board_format_for_everyone_content'}}
+      </p>
+    </div>
+    <div class="col-sm-4 section_pic">
+      <img src="https://farm7.staticflickr.com/6056/6319191649_3c063d4c72_z_d.jpg" class="img-rounded"/>
+      <div>
+        <a href="https://www.flickr.com/photos/nooccar/6319191649" target="_blank">photo</a> by Devin Adams, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC By</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 section_pic">
+      <img src="https://farm3.staticflickr.com/2659/3800475934_eda5d9b785_z_d.jpg" class="img-rounded"/>
+      <div>
+        <a href="https://www.flickr.com/photos/oimax/3800475934" target="_blank">photo</a> by OiMax, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC By</a>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <h2>{{t "Communication Boards Should Be Portable" key='boards_should_be_portable'}}</h2>
+      <p>
+        {{t "See, right now it's hard to move your personalized boards from one device to another. Some apps will help you move your boards by backing them up using proprietary formats to iTunes or DropBox, but that only works so long as that company stays in business and continues to be the best interface for the communicator. If you want to switch apps then you're going to be doing a lot of copy and  paste getting the boards rebuilt in the new app." key='boards_should_be_portable_content'}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>{{t "Communication Boards Should Be Shareable" key='boards_should_be_shareable'}}</h2>
+      <p>
+        {{t "On top of that, sharing starter templates or successful sub-boards is either not possible, or limited to only people using the same device, brand or app. There are board repositories out there hosted by some vendors, but wouldn't it be great if those could all be consolidated so you could find boards that you can use regardless of what AAC app or device you've chosen? Why isn't it easier to share an activity-based board or an entire vocabulary without first saying, \"wait, what system are you using?\"" key='boards_should_be_shareable_content'}}
+      </p>
+    </div>
+    <div class="col-sm-4 section_pic">
+      <img src="https://farm5.staticflickr.com/4007/4692747592_98fd6716bc_z_d.jpg" class="img-rounded"/>
+      <div>
+        <a href="https://www.flickr.com/photos/jcfrog/4692747592" target="_blank">photo</a> by Jérôme Choain, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC By</a>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h2>{{t "Introducing the Open Board Format" key='introducing_obf'}}</h2>
+      <p>
+        {{t ".obf and .obz files are special files that contain all the configuration necessary to import communication boards onto a device or tablet running AAC software. The format is fully documented and open-licensed, meaning any provider can leverage it in their AAC apps -- and we hope they will! The more providers who get on board, the better it will be for everyone because it will keep communication boards from getting so stuck. If your AAC provider doesn't import or export .obf files, we'd encourage you to encourage them to do so." key='introducing_obf_content_1'}}
+      </p>
+      <p>
+        {{t "If you'd like to learn more, check out the links below. Also, please help us spread the good word. The only way this is going to happen is if enough of us get behind it enough to make it happen, so thank you for getting involved!" key='introducing_obf_content_2'}}
+      </p>
+    </div>
+  </div>
+  <div class="row" style="margin: 50px 0;">
+    <div class="col-sm-3" style="text-align: center;">
+      {{#link-to 'share'}}
+        <img src="/share.svg" class="img-rounded" style="height: 150px;"/>
+        <h3>{{t "Spread the Word" key='spread_the_word'}}</h3>
+      {{/link-to}}
+      <p>{{t "See examples of some ways you can help make .obf a reality." key='spread_the_word_content'}}</p>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      {{#link-to 'docs'}}
+        <img src="/docs.svg" class="img-rounded" style="height: 150px;"/>
+        <h3>{{t "Read the Docs" key='read_the_docs'}}</h3>
+      {{/link-to}}
+      <p>{{t "If you're feeling technical, you can review and provide feedback on the file format itself." key='read_the_docs_content'}}</p>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      {{#link-to 'examples'}}
+        <img src="/examples.svg" class="img-rounded" style="height: 150px;"/>
+        <h3>{{t "See Some Examples" key='see_examples'}}</h3>
+      {{/link-to}}
+      <p>{{t "You can see side-by-side examples of .obf files and how they would look when printed off as pdfs." key='see_examples_content'}}</p>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      {{#link-to 'tools'}}
+        <img src="/convert.svg" class="img-rounded" style="height: 150px;"/>
+        <h3>{{t "Convert a File" key='convert_a_file'}}</h3>
+      {{/link-to}}
+      <p>{{t "Convert a support file to .obf or .pdf, validate an .obf file, or use our translation tool." key='convert_a_file_content'}}</p>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="docs">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>{{t "Open Board Format Documentation" key='documentation'}}</h2>
+      <p>
+        {{t "Below is the current draft of the open board file format specification. If you want to provide comments you can" key='documentation_intro'}}
+        <a href="https://docs.google.com/document/d/1Bnl5neOf9-y53yOAGjd8BzQ7jvAdLhcB6y9Zw7ITYbA/edit" target="_blank">
+          {{t "open the document in a new window" key='open_in_a_new_window'}}
+        </a>
+      </p>
+      <iframe src="https://docs.google.com/document/d/1Bnl5neOf9-y53yOAGjd8BzQ7jvAdLhcB6y9Zw7ITYbA/pub?embedded=true" frameborder="0" style="width: 100%; height: 600px; border: 2px solid #888;"></iframe>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="share">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>{{t "Spread the Word About the Open Board Format" key='spread_the_word_about_obf'}}</h2>
+      <p>
+        {{t "Having a standardized board format benefits everyone, since it makes it easier to share and reuse communication boards and board sets across devices and even applications. So why hasn't it happened yet? Partly because not enough people have raised a stink about the option not being there! AAC providers aren't inherently motivated to support non-proprietary file formats (especially for export), they're content to let people stay locked into their ecosystem, so let's give them all a friendly shove in the right direction!" key='share_instructions_1'}}
+      </p>
+      <p>
+        {{t "If you use an AAC device or app, or work with someone who does, you should reach out to them and ask about their plans to support the open board format. The more people that ask, the more likely they'll be to add support!" key='share_instructions_2'}}
+      </p>
+      
+      <div style="margin-bottom: 25px;">
+        <iframe src="/twitter_timeline.html" frameborder="0" style="width: 100%; height: 630px;">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="tools">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>{{t "File Format Tools" key='file_format_tools'}}</h2>
+      <p>
+        {{t "We'd be remiss if we didn't provide some utilities to make life easier for those trying to implement .obf and .obz support." key='tools_intro'}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <h3>{{t "File Validator" key='format_validator'}}</h3>
+      <p>{{t "This tool will parse .obf and .obz files and generate a report with any known problems found by the validator. NOTE: this is a work in progress, so there are definitely missing checks, but it's still a good sanity check." key='validator_explanation'}}</p>
+    </div>
+    <div class="col-sm-3">
+      <h3>{{t "Preview Generator" key='preview_generator'}}</h3>
+      <p>{{t "This tool will take an .obf or .obz files and generate a pdf preview of the board(s) contained in the file." key='previewer_explanation'}}</p>
+    </div>
+    <div class="col-sm-3">
+      <h3>{{t "File Converter" key='external_converter'}}</h3>
+      <p>{{t "This tool will take files from known formats and convert them to valid .obf and .obz files." key='converter_explanation'}}</p>
+      <p>{{t "The list of known file types will hopefully grow over time, but here is the current list:" key='supported_file_types'}}</p>
+      <ul>
+        <li><a href="https://www.mycoughdrop.com" target="_blank">CoughDrop</a> - two-way native</li>
+        <li><a href="http://sensorysoftware.com/grid-software-for-aac/grid2_aac_software/" target="_blank">The Grid 2</a> - convert-to-obf</li>
+        <li><a href="http://www.picto4.me/" target="_blank">Picto4Me</a> - convert-to-obf</li>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <h3>{{t "Translation Helper" key='translation_helper'}}</h3>
+      <p>{{t "Coming soon! This will make it easier to generate the resources needed when translating a board set from one locale to another." key='coming_soon_translator'}}</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 15x; margin-bottom: 25px;">
+    <div class="col-sm-3" style="text-align: center;">
+      <div style="margin-bottom: 10px;">
+        {{input type="file" value=validate_file id="validate_file"}}
+      </div>
+      <button class="btn btn-primary btn-lg" {{action "validate_file"}} {{bind-attr disabled=bad_validate_file}} style="width: 100%;">Validate File</button>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      <div style="margin-bottom: 10px;">
+        {{input type="file" value=preview_file id="preview_file"}}
+      </div>
+      <button class="btn btn-primary btn-lg" {{action "preview_file"}} {{bind-attr disabled=bad_preview_file}} style="width: 100%;">Generate Preview</button>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      <div style="margin-bottom: 10px;">
+        {{input type="file" value=convert_file id="convert_file"}}
+      </div>
+      <button class="btn btn-primary btn-lg" {{action "convert_file"}} {{bind-attr disabled=bad_convert_file}} style="width: 100%;">Convert File</button>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      <div style="margin-bottom: 10px;">
+        {{input type="file" value=translate_file id="translate_file"}}
+      </div>
+      <button class="btn btn-primary btn-lg" {{action "translate_file"}} {{bind-attr disabled=bad_translate_file}} style="width: 100%;">Coming Eventually!</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        {{t "Note: the validator, converter, and pdf generator are all available programmatically via the" key='obf_gem_pretext'}}
+        <a href="https://www.github.com/CoughDrop/obf">{{t "obf ruby gem library" key='obf_gem'}}</a>.
+      </p>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+  </div>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="examples">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>{{t "Example .obf and .obz Files" key='example_files'}}</h2>
+      <p>
+        {{t "Here are some example .obf and .obz files that you can download and inspect. They will also be useful for testing since they cover all the current attributes in the specification." key='examples_intro'}}
+      </p>
+      <h3>.obf Examples</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 200px;">{{t "Filename" key='filename'}}</th>
+            <th style="width: 200px;">{{t "Preview" key='preview'}}</th>
+            <th>{{t "Notes" key='notes'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/simple.obf">simple.obf</a><div class="text-muted">1kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/simple.obf.pdf">simple.obf.pdf</a><div class="text-muted">4kb</div></td>
+            <td>
+              {{t "This is a very basic .obf file, it contains no images or sounds, and assumes default styling." key='simple_obf_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/inline_images.obf">inline_images.obf</a><div class="text-muted">78kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/inline_images.obf.pdf">inline_images.obf.pdf</a><div class="text-muted">72kb</div></td>
+            <td>
+              {{t "This is an .obf file with images included as data attributes within the file. It also includes some simple styling." key='inline_images_obf_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/url_images.obf">url_images.obf</a><div class="text-muted">1kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/url_images.obf.pdf">url_images.obf.pdf</a><div class="text-muted">72kb</div></td>
+            <td>
+              {{t "This is an .obf file with images referenced by external URL. It also includes some simple styling." key='url_images_obf_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/images_and_sounds.obf">images_and_sounds.obf</a><div class="text-muted">73kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/images_and_sounds.obf.pdf">images_and_sounds.obf.pdf</a><div class="text-muted">72kb</div></td>
+            <td>
+              {{t "This is an .obf file with images and sounds included both as data attributes within the file, and as external URLs. It also includes some simple styling." key='images_and_sounds_obf_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/lots_of_stuff.obf">lots_of_stuff.obf</a><div class="text-muted">75kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/lots_of_stuff.obf.pdf">lots_of_stuff.obf.pdf</a><div class="text-muted">73kb</div></td>
+            <td>
+              {{t "This is an .obf file that covers all documented components of the spec (images, sounds, alpha colors, proprietary symbols, custom vocalizations, spelling and actions, licensing, ext_ attributes, etc.)." key='lots_of_stuff_obf_notes'}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>.obz Examples</h3>
+      <p>{{t "newbie-tip: If you're having trouble getting started with .obz files, remember you can just rename them to .zip files and manually extract the contents!" key='obz_hint'}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 200px;">{{t "Filename" key='filename'}}</th>
+            <th style="width: 200px;">{{t "Preview" key='preview'}}</th>
+            <th>{{t "Notes" key='notes'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/simple.obz">simple.obz</a><div class="text-muted">1kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/simple.obz.pdf">simple.obz.pdf</a><div class="text-muted">4kb</div></td>
+            <td>
+              {{t "This is a very basic .obz file, it contains only one board, no images or sounds, and assumes default styling." key='simple_obz_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/links.obz">links.obz</a><div class="text-muted">2kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/links.obz.pdf">links.obz.pdf</a><div class="text-muted">12kb</div></td>
+            <td>
+              {{t "This is an .obz file with multiple boards that reference one another via linked buttons." key='links_obz_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/inline_images.obz">inline_images.obz</a><div class="text-muted">10kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/inline_images.obz.pdf">inline_images.obz.pdf</a><div class="text-muted">20kb</div></td>
+            <td>
+              {{t "This is an .obz file with images included in the nested .obf files as data attributes." key='inline_images_obz_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/examples/path_images.obz">path_images.obz</a><div class="text-muted">59kb</div></td>
+            <td><a href="/examples/path_images.obz.pdf">path_images.obz.pdf</a><div class="text-muted">76kb</div></td>
+            <td>
+              {{t "This is an .obz file with images included in the zip package as separate files." key='path_images_obz_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/images_and_sounds.obz">images_and_sounds.obz</a><div class="text-muted">69kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/images_and_sounds.obz.pdf">images_and_sounds.obz.pdf</a><div class="text-muted">76kb</div></td>
+            <td>
+              {{t "This is an .obz file with images and sounds included both as data attributes within .obf files and also included in the zip package as separate files." key='images_and_sounds_obz_notes'}}
+            </td>
+          </tr>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/lots_of_stuff.obz">lots_of_stuff.obz</a><div class="text-muted">73kb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/lots_of_stuff.obz.pdf">lots_of_stuff.obz.pdf</a><div class="text-muted">71kb</div></td>
+            <td>
+              {{t "This is an .obz file that covers all documented components of the spec (images, sounds, links, alpha colors, proprietary symbols, custom vocalizations, spelling and actions, licensing, ext_ attributes, etc.)." key='lots_of_stuff_obz_notes'}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" id="components/modal-dialog">
+  <div class="modal fade in" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content" style="overflow: auto;">
+        {{yield}}
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</script>
+
+<script type="text/x-handlebars" data-template-name="loading-status">
+  {{#modal-dialog action="close"}}
+    <div class="modal-header">
+      <button type="button" class="close" {{action close}}>&times;</button>
+      <h3>
+        {{header}}
+      </h3>
+    </div>
+    <div class="modal-body">
+      {{#if error}}
+        <div class="status">
+          <span class="glyphicon glyphicon-exclamation-sign"></span>
+          {{t "Error: " key='error'}} {{ error }}
+        </div>
+      {{else}}
+        {{#if download_url}}
+          <div class="status">
+            <a {{bind-attr href=download_url}}>
+              <span class="glyphicon glyphicon-cloud-download"></span>
+              {{t "Done! You can download the result here." key='done_and_download'}}
+            </a>
+          </div>
+        {{else}}
+          {{#if validation_results}}
+            <div style="margin-bottom: 10px;">
+              {{#if validation_results.valid}}
+                <h3 class="text-success">{{t "Valid!" key='valid'}}</h3>
+                {{t "No Errors" key='errors'}}, 
+              {{else}}
+                <h3 class="text-danger">{{t "Invalid :-(" key='invalid'}}</h3>
+                <span class="text-danger">{{count validation_results.errors key='errors' plural='Errors' singular='Error'}},</span>
+              {{/if}}
+              <span class="text-warning">{{count validation_results.warnings key='warnings' plural='Warnings' singular='Warning'}}</span>
+              <br/>
+              {{validation_results.filename}} ({{size validation_results.filesize}})
+            </div>
+            <table class="table table-striped table-hover" id="validation_results">
+              <thead>
+                <tr>
+                  <th>{{t "Check" key='check'}}</th>
+                  <th>{{t "Status" key='status'}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each result in validation_results.results}}
+                  {{partial "validation-result"}}
+                {{/each}}
+                {{#each sub_result in validation_results.sub_results}}
+                  <tr>
+                    <td colspan="2">
+                      {{#if sub_result.valid}}
+                        <h4 class="text-success"><span class="glyphicon glyphicon-ok"></span> {{sub_result.filename}} ({{size sub_result.filesize}})</h4>
+                      {{else}}
+                        <h4 class="text-danger"><span class="glyphicon glyphicon-remove"></span> {{sub_result.filename}} ({{size sub_result.filesize}})</h4>
+                      {{/if}}
+                    </td>
+                  </tr>
+                  {{#each result in sub_result.results}}
+                    {{partial "validation-result"}}
+                  {{/each}}
+                {{/each}}
+              </tbody>
+            </table>
+          {{else}}
+            <div class="status">
+              <span class="spinner"><span class="glyphicon glyphicon-refresh"></span></span>
+              {{loader}}
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </div>
+  {{/modal-dialog}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="_validation-result">
+  <tr>
+    <td class="type"><p>{{result.description}}</p></td>
+    <td class="details">
+      {{#if result.valid}}
+        <p class="text-success">valid</p>
+      {{else}}
+        <p class="text-danger"><span class="glyphicon glyphicon-exclamation-sign"></span> {{t "Error:" key='error'}} {{result.error}}</p>
+      {{/if}}
+      {{#if result.warnings}}
+        {{#each warning in result.warnings}}
+          <p class="text-warning">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            {{t "Warning:" key='warning'}} {{warning}}
+          </p>
+        {{/each}}
+      {{/if}}
+    </td>
+  </tr>
+</script>
+
+<%= javascript_include_tag "application", :defer => true %>
+<script>
+  var AUTH_TOKEN = "<%= form_authenticity_token %>";
+</script>
