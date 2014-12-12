@@ -8,11 +8,15 @@ group :development, :test do
 #  gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'simplecov', :require => false
+  gem 'sqlite3'
 #  gem 'debugger'
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem 'rails', '4.1.0'
-gem 'sqlite3'
 gem 'typhoeus'
 gem 'sass-rails', '~> 4.0.3'
 # gem 'uglifier', '>= 1.3.0'
