@@ -1,28 +1,25 @@
-== README
+== Open Board Format Docs
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails app documenting the value and implementation of the
+open board format. .obf and .obz files are open-licensed file formats that
+anyone can use to import and export communication boards used by AAC apps
+for individuals with complex communication needs.
 
-Things you may want to cover:
+Typically these boards are grids of buttons the user can hit and a 
+text-to-speech engine will "speak" the work or phrase on behalf of the
+user. Boards often link to other boards for more complex vocabularies.
 
-* Ruby version
+This app contains tools such as an .obf/.obz validator, a pdf previewer,
+a proprietary file format converter, etc. It's also hopefully easy on 
+the eyes.
 
-* System dependencies
+=== Setup
 
-* Configuration
+To set it up you'll need a redis server (see config/initializers/resque.rb) 
+and a postgres database running. Run your migrations and start up the Rails app, 
+as well as a background job server (see Procfile) and everything should be
+hunky dory!
 
-* Database creation
+=== TODO
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Specs
