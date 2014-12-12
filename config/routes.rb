@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/converter/status' => 'conversions#status'
 
   protected_resque = Rack::Auth::Basic.new(Resque::Server.new) do |username, password|
-    username == 'admin' && password == 'password'
+    username == 'admin' && password == (ENV['RESQUE_PASSWORD'] || 'password')
   end
   mount protected_resque, :at => "/resque"
 
