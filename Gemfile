@@ -19,7 +19,7 @@ end
 gem 'rails', '4.1.0'
 gem 'typhoeus'
 gem 'sass-rails', '~> 4.0.3'
-# gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 1.3.0'
 gem 'resque'
 gem 'rails_12factor', group: :production
 gem 'heroku-deflater', :group => :production
