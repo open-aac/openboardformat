@@ -65,3 +65,25 @@
     padding-left: 15px;
   }
 }
+
+#main_rows .row {
+  border-radius: 5px;
+  margin: 10px 10px;
+  padding: 60px 0 30px;
+  &:first-child {
+    padding-top: 0;
+  }
+  p {
+    margin-bottom: 30px;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  &.stripe {
+    background: #eee;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}

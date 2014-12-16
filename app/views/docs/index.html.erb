@@ -51,11 +51,15 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="index">
+  <div id="main_rows">
   <div class="row">
     <div class="col-sm-8">
       <h2>{{t "A Board Format for Everyone" key='board_format_for_everyone'}}</h2>
       <p>
-        {{t "Communication boards are used by AAC apps and devices to make it easier for individuals with complex communication needs to find their words and express themselves more easily. Over time these boards become heavily customized for each individual, and the communicator gets used to the placement and styling of the content on their boards. This is great, but it leads to problems when a user needs to switch apps or migrate from one device to another." key='board_format_for_everyone_content'}}
+        {{t "Some individuals struggle communicating, and need help from technology to get their words out. AAC apps and devices are tools that show lists of words or phrases tied to a speech-generator. The word lists, often shown as a grid of buttons, are called communication boards. It's a powerful way to enable self-expression for individuals with complex communication needs." key='board_format_for_everyone_content'}}
+      </p>
+      <p>
+        {{t "Over time these boards get tweaked and heavily individualized with new words, sub-boards, and personal pictures, and the communicator gets used to the placement and styling of the content on their boards. This is great -- so long as the user doesn't need to switch apps or devices." key='board_format_for_everyone_content2'}}
       </p>
     </div>
     <div class="col-sm-4 section_pic">
@@ -65,7 +69,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row stripe">
     <div class="col-sm-4 section_pic">
       <img src="https://farm3.staticflickr.com/2659/3800475934_eda5d9b785_z_d.jpg" class="img-rounded"/>
       <div>
@@ -75,7 +79,10 @@
     <div class="col-sm-8">
       <h2>{{t "Communication Boards Should Be Portable" key='boards_should_be_portable'}}</h2>
       <p>
-        {{t "See, right now it's hard to move your personalized boards from one device to another. Some apps will help you move your boards by backing them up using proprietary formats to iTunes or DropBox, but that only works so long as that company stays in business and continues to be the best interface for the communicator. If you want to switch apps then you're going to be doing a lot of copy and  paste getting the boards rebuilt in the new app." key='boards_should_be_portable_content'}}
+        {{t "See, there are dozens of different AAC options available, and many cater to a specific age group or functional level. Some don't let you back up your boards at all, and the ones that do usually rely on a proprietary file format, which means you can't take your boards and pictures with you when you decide to try another app." key='boards_should_be_portable_content'}}
+      </p>
+      <p>
+        {{t "Why when a person switches AAC apps do they have to spend hours copying and pasting to get their personalized boards rebuilt in the new app?" key='boards_should_be_portable_content2'}}
       </p>
     </div>
   </div>
@@ -83,7 +90,10 @@
     <div class="col-sm-8">
       <h2>{{t "Communication Boards Should Be Shareable" key='boards_should_be_shareable'}}</h2>
       <p>
-        {{t "On top of that, sharing starter templates or successful sub-boards is either not possible, or limited to only people using the same device, brand or app. There are board repositories out there hosted by some vendors, but wouldn't it be great if those could all be consolidated so you could find boards that you can use regardless of what AAC app or device you've chosen? Why isn't it easier to share an activity-based board or an entire vocabulary without first saying, \"wait, what system are you using?\"" key='boards_should_be_shareable_content'}}
+        {{t "On top of that, sharing boards and templates is either not possible, or limited to only people using the same device, brand or app. Nobody wants to create new boards from scratch, and some vendors host public board repositories, but often there are licensing and usage restrictions that make it unclear what uses are allowed." key='boards_should_be_shareable_content'}}
+      </p>
+      <p>
+        {{t "Why isn't it easier to share an activity-based board or an entire vocabulary without first saying, \"wait, what system are you using?\"" key='boards_should_be_shareable_content2'}}
       </p>
     </div>
     <div class="col-sm-4 section_pic">
@@ -93,18 +103,19 @@
       </div>
     </div>
   </div>
-  <div class="row" style="margin-top: 25px;">
-    <div class="col-sm-8 col-sm-offset-2">
+  <div class="row stripe">
+    <div class="col-sm-8 col-sm-offset-2" style="margin-bottom: 25px;">
       <h2>{{t "Introducing the Open Board Format" key='introducing_obf'}}</h2>
       <p>
-        {{t ".obf and .obz files are special files that contain all the configuration necessary to import communication boards onto a device or tablet running AAC software. The format is fully documented and open-licensed, meaning any provider can leverage it in their AAC apps -- and we hope they will! The more providers who get on board, the better it will be for everyone because it will keep communication boards from getting so stuck. If your AAC provider doesn't import or export .obf files, we'd encourage you to encourage them to do so." key='introducing_obf_content_1'}}
+        {{t ".obf and .obz files are simple files that contain all the configuration necessary to import communication boards onto a device or tablet running AAC software. The format is fully documented, encourages usage and attribution definitions within the file, and is open-licensed." key='introducing_obf_content_1'}}
       </p>
       <p>
-        {{t "If you'd like to learn more, check out the links below. Also, please help us spread the good word. The only way this is going to happen is if enough of us get behind it enough to make it happen, so thank you for getting involved!" key='introducing_obf_content_2'}}
+        {{t "That means that any provider can easily leverage .obf files in their AAC apps -- and we hope they will! The more providers who get on board, the better it will be for everyone because it will keep communication boards from getting so stuck. If your AAC provider doesn't import or export .obf files, we'd encourage you to encourage them to do so." key='introducing_obf_content_2'}}
+      </p>
+      <p>
+        {{t "If you'd like to learn more, check out the links below. Also, please help us spread the good word. The only way this is going to happen is if enough of us get behind it enough to make it happen, so thank you for getting involved!" key='introducing_obf_content_3'}}
       </p>
     </div>
-  </div>
-  <div class="row" style="margin: 50px 0;">
     <div class="col-sm-3" style="text-align: center;">
       {{#link-to 'share'}}
         <img src="/share.svg" class="img-rounded" style="height: 150px;"/>
@@ -133,6 +144,7 @@
       {{/link-to}}
       <p>{{t "Convert a support file to .obf or .pdf, validate an .obf file, or use our translation tool." key='convert_a_file_content'}}</p>
     </div>
+  </div>
   </div>
 </script>
 
