@@ -425,22 +425,47 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each result in validation_results.results}}
-                  {{partial "validation-result"}}
-                {{/each}}
+                  <tr>
+                    <td colspan="2">
+                      <h4 {{bind-attr class="general_results_valid:text-success:text-danger"}}>
+                        <span {{bind-attr class=":glyphicon general_results_valid:glyphicon-ok:glyphicon-remove"}}></span> 
+                        General results
+                        <a href="#" {{action 'toggle'}} style="padding-left: 15px; font-size: 12px;">
+                          {{#if validation_results.toggled}}
+                            show
+                          {{else}}
+                            hide
+                          {{/if}}
+                        </a>
+                      </td>
+                    </h4>
+                  </tr>
+                  {{#unless validation_results.toggled}}
+                    {{#each result in validation_results.results}}
+                      {{partial "validation-result"}}
+                    {{/each}}
+                  {{/unless}}
                 {{#each sub_result in validation_results.sub_results}}
                   <tr>
                     <td colspan="2">
-                      {{#if sub_result.valid}}
-                        <h4 class="text-success"><span class="glyphicon glyphicon-ok"></span> {{sub_result.filename}} ({{size sub_result.filesize}})</h4>
-                      {{else}}
-                        <h4 class="text-danger"><span class="glyphicon glyphicon-remove"></span> {{sub_result.filename}} ({{size sub_result.filesize}})</h4>
-                      {{/if}}
+                      <h4 {{bind-attr class="sub_result.valid:text-success:text-danger"}}>
+                        <span {{bind-attr class=":glyphicon sub_result.valid:glyphicon-ok:glyphicon-remove"}}></span> 
+                        {{sub_result.filename}} ({{size sub_result.filesize}})
+                        <a href="#" {{action 'toggle' sub_result}} style="padding-left: 15px; font-size: 12px;">
+                          {{#if sub_result.toggled}}
+                            show
+                          {{else}}
+                            hide
+                          {{/if}}
+                        </a>
+                      </h4>
                     </td>
                   </tr>
-                  {{#each result in sub_result.results}}
-                    {{partial "validation-result"}}
-                  {{/each}}
+                  {{#unless sub_result.toggled}}
+                    {{#each result in sub_result.results}}
+                      {{partial "validation-result"}}
+                    {{/each}}
+                  {{/unless}}
                 {{/each}}
               </tbody>
             </table>

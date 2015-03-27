@@ -194,11 +194,21 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
     });
     
     convert.then(function(data) {
-      _this.set('validation_results', data);
+      _this.set('validation_results', Ember.Object.create(data));
     }, function(err) {
       _this.set('error', err.error);
     });
   },
+  general_results_valid: function() {
+    var results = this.get('validation_results.results') || [];
+    var all_valid = true;
+    results.forEach(function(r) {
+      if(!r.valid) {
+        all_valid = false;
+      }
+    });
+    return all_valid;
+  }.property('validation_results.results'),
   upload_file: function(file) {
     var _this = this;
     var read = _this.read_file(file);
@@ -306,5 +316,13 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
       };
       Ember.run.later(ping, 3000);
     });
+  },
+  actions: {
+    toggle: function(result) {
+      if(!result) {
+        result = this.get('validation_results');
+      }
+      Ember.set(result, 'toggled', !Ember.get(result, 'toggled'));
+    }
   }
 });
