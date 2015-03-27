@@ -432,9 +432,9 @@
                         General results
                         <a href="#" {{action 'toggle'}} style="padding-left: 15px; font-size: 12px;">
                           {{#if validation_results.toggled}}
-                            show
+                            expand
                           {{else}}
-                            hide
+                            collapse
                           {{/if}}
                         </a>
                       </td>
@@ -453,9 +453,9 @@
                         {{sub_result.filename}} ({{size sub_result.filesize}})
                         <a href="#" {{action 'toggle' sub_result}} style="padding-left: 15px; font-size: 12px;">
                           {{#if sub_result.toggled}}
-                            show
+                            expand
                           {{else}}
-                            hide
+                            collapse
                           {{/if}}
                         </a>
                       </h4>
