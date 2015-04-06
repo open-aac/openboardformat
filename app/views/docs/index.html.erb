@@ -20,14 +20,8 @@
                 {{#link-to 'examples' tagName='li' href=false}}{{#link-to 'examples'}}{{t "Examples" key='examples'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'tools' tagName='li' href=false}}{{#link-to 'tools'}}{{t "Tools" key='tools'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'share' tagName='li' href=false}}{{#link-to 'share'}}{{t "Share" key='share'}}{{/link-to}}{{/link-to}}
-                {{#if index_route}}
-                <li><a href='#communikate-20'>
-                  {{t "Demo" key='demo'}}
-                  <span class='label label-danger'>{{t "NEW" key='new_caps'}}</span>
-                </a><li>
-                {{/if}}
               </ul>
-              <div {{bind-attr class="index:hidden"}}>
+              <div>
                 <div style="float: right; margin-top: 15px; padding-right: 25px;">
                   <iframe
                     src="https://platform.twitter.com/widgets/tweet_button.html?size=m&url={{unbound escaped_root_url}}&hashtags=openboards&text=OpenBoards%3A%20a%20cross-platform%20AAC%20board%20format%20for%20all%20AAC%20users"
@@ -58,6 +52,24 @@
 
 <script type="text/x-handlebars" data-template-name="index">
   <div id="main_rows">
+  <div class="row stripe" style="padding-top: 20px; padding-bottom: 20px; margin-top: 0px;">
+    <a name="communikate-20"></a>
+    <div class="col-sm-8">
+      <h2>
+        <span class="label label-danger">{{t "NEW" key='new_caps'}}</span>
+        {{t "Check out CommuniKate-20.obz!" key='check_out_communikate'}}
+      </h2>
+      <p>
+        {{t "Kate McCallum has <a href='http://joereddington.com/projects/communikate/'>created</a> an open-licensed (<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>CC By-NC-SA</a>) board set that anyone can use free of charge! The board set is now available as an .obz file that can be imported into any system that supports the Open Board Format. Thanks Kate, for leading the way and providing a great example people can use to get to know the Open Board Format in action!" key='communikate-20_content_1'}}
+      </p>
+      <a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz" class="btn btn-primary">download communikate-20.obz (13Mb)</a>
+      <a href="https://www.mycoughdrop.com/kate-mccallum/communikate-top-page" class="btn btn-default">see it in action</a>
+      <a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz.pdf" class="btn btn-default">download a pdf preview (57Mb)</a>
+    </div>
+    <div class="col-sm-4 section_pic">
+      <img src="https://openboards.s3.amazonaws.com/examples/communikate-20.png" class="img-rounded"/>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-8">
       <h2>{{t "A Board Format for Everyone" key='board_format_for_everyone'}}</h2>
@@ -149,24 +161,6 @@
         <h3>{{t "Convert a File" key='convert_a_file'}}</h3>
       {{/link-to}}
       <p>{{t "Convert a support file to .obf or .pdf, validate an .obf file, or use our translation tool." key='convert_a_file_content'}}</p>
-    </div>
-  </div>
-  <div class="row" style="padding-top: 20px; padding-bottom: 20px; margin-top: 0px;">
-    <a name="communikate-20"></a>
-    <div class="col-sm-8">
-      <h2>
-        <span class="label label-danger">{{t "NEW" key='new_caps'}}</span>
-        {{t "Check out CommuniKate-20.obz!" key='check_out_communikate'}}
-      </h2>
-      <p>
-        {{t "Kate McCallum has created an open-licensed (<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>CC By-NC-SA</a>) board set that anyone can use free of charge! The board set is now available as an .obz file that can be imported into any system that supports the Open Board Format. Thanks Kate, for leading the way and providing a great example people can use to get to know the Open Board Format in action!" key='communikate-20_content_1'}}
-      </p>
-      <a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz" class="btn btn-primary">download communikate-20.obz (13Mb)</a>
-      <a href="https://www.mycoughdrop.com/kate-mccallum/communikate-top-page" class="btn btn-default">see it in action</a>
-      <a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz.pdf" class="btn btn-default">download a pdf preview (57Mb)</a>
-    </div>
-    <div class="col-sm-4 section_pic">
-      <img src="https://openboards.s3.amazonaws.com/examples/communikate-20.png" class="img-rounded"/>
     </div>
   </div>
   </div>
