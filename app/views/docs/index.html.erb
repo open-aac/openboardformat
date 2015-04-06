@@ -20,6 +20,12 @@
                 {{#link-to 'examples' tagName='li' href=false}}{{#link-to 'examples'}}{{t "Examples" key='examples'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'tools' tagName='li' href=false}}{{#link-to 'tools'}}{{t "Tools" key='tools'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'share' tagName='li' href=false}}{{#link-to 'share'}}{{t "Share" key='share'}}{{/link-to}}{{/link-to}}
+                {{#if index}}
+                <li><a href='#communikate-20'>
+                  {{t "Demo" key='demo'}}
+                  <span class='label label-danger'>{{t "NEW" key='new_caps'}}</span>
+                </a><li>
+                {{/if}}
               </ul>
               <div {{bind-attr class="index:hidden"}}>
                 <div style="float: right; margin-top: 15px; padding-right: 25px;">
@@ -145,6 +151,24 @@
       <p>{{t "Convert a support file to .obf or .pdf, validate an .obf file, or use our translation tool." key='convert_a_file_content'}}</p>
     </div>
   </div>
+  <div class="row" style="padding-top: 20px; padding-bottom: 20px; margin-top: 0px;">
+    <a name="communikate-20"></a>
+    <div class="col-sm-8">
+      <h2>
+        <span class="label label-danger">{{t "NEW" key='new_caps'}}</span>
+        {{t "Check out CommuniKate-20.obz!" key='check_out_communikate'}}
+      </h2>
+      <p>
+        {{t "Kate McCallum has created an open-licensed (<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>CC By-NC-SA</a>) board set that anyone can use free of charge! The board set is now available as an .obz file that can be imported into any system that supports the Open Board Format. Thanks Kate, for leading the way and providing a great example people can use to get to know the Open Board Format in action!" key='communikate-20_content_1'}}
+      </p>
+      <a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz" class="btn btn-primary">download communikate-20.obz (13Mb)</a>
+      <a href="https://www.mycoughdrop.com/kate-mccallum/communikate-top-page" class="btn btn-default">see it in action</a>
+      <a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz.pdf" class="btn btn-default">download a pdf preview (57Mb)</a>
+    </div>
+    <div class="col-sm-4 section_pic">
+      <img src="https://openboards.s3.amazonaws.com/examples/communikate-20.png" class="img-rounded"/>
+    </div>
+  </div>
   </div>
 </script>
 
@@ -265,7 +289,7 @@
       <p>
         {{t "Here are some example .obf and .obz files that you can download and inspect. They will also be useful for testing since they cover all the current attributes in the specification. The previews are all generated using the Preview Generator tool available on this site, and will look like paper-based communication boards or board sets." key='examples_intro'}}
       </p>
-      <h3>.obf Examples</h3>
+      <h3>{{t ".obf Examples" key='obf_examples'}}</h3>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -312,7 +336,7 @@
           </tr>
         </tbody>
       </table>
-      <h3>.obz Examples</h3>
+      <h3>{{t ".obz Examples" key='obz_examples'}}</h3>
       <p>{{t "newbie-tip: If you're having trouble getting started with .obz files, remember you can just rename them to .zip files and manually extract the contents!" key='obz_hint'}}
       <table class="table table-striped">
         <thead>
@@ -363,6 +387,25 @@
             <td><a href="https://openboards.s3.amazonaws.com/examples/lots_of_stuff.obz.pdf">lots_of_stuff.obz.pdf</a><div class="text-muted">71kb</div></td>
             <td>
               {{t "This is an .obz file that covers all documented components of the spec (images, sounds, links, alpha colors, proprietary symbols, custom vocalizations, spelling and actions, licensing, ext_ attributes, etc.)." key='lots_of_stuff_obz_notes'}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>{{t "Real-world Examples" key='real_world_examples'}}</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 200px;">{{t "Filename" key='filename'}}</th>
+            <th style="width: 200px;">{{t "Preview" key='preview'}}</th>
+            <th>{{t "Notes" key='notes'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz">communikate-20.obz</a><div class="text-muted">13Mb</div></td>
+            <td><a href="https://openboards.s3.amazonaws.com/examples/communikate-20.obz.pdf">communikate-20.obz.pdf</a><div class="text-muted">57Mb</div></td>
+            <td>
+              {{t "CommuniKate is an open-licensed (<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>CC By-NC-SA</a>) board set created by Kate McCallum. It is a very rich set with almost 1200 words in a 5x4 grid layout. You can <a href='https://www.mycoughdrop.com/kate-mccallum/communikate-top-page'>see this board set in action here</a>." key='communikate-20_notes'}}
             </td>
           </tr>
         </tbody>

@@ -52,6 +52,9 @@ OpenBoards.ApplicationController = Ember.Controller.extend({
   root_url: function() {
     return location.origin + "/";
   }.property(''),
+  index: function() {
+    return this.get('currentPath') == 'index';
+  }.property('currentPath'),
   escaped_root_url: function() {
     return encodeURIComponent(this.get('root_url'));
   }.property('root_url')
