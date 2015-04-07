@@ -13,6 +13,8 @@ This app contains tools such as an .obf/.obz validator, a pdf previewer,
 a proprietary file format converter, etc. It's also hopefully easy on 
 the eyes.
 
+You can see the site live at http://www.openboardformat.org
+
 === Setup
 
 To set it up you'll need a redis server (see config/initializers/resque.rb) 
