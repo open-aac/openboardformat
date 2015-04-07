@@ -34,6 +34,7 @@ OpenBoards.Router.map(function () {
   this.route('examples', { path: '/examples' });
   this.route('tools', { path: '/tools' });
   this.route('share', { path: '/share' });
+  this.route('partners', { path: '/partners' });
 });
 
 OpenBoards.ApplicationRoute = Ember.Route.extend({

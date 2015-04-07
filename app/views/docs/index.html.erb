@@ -20,6 +20,7 @@
                 {{#link-to 'examples' tagName='li' href=false}}{{#link-to 'examples'}}{{t "Examples" key='examples'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'tools' tagName='li' href=false}}{{#link-to 'tools'}}{{t "Tools" key='tools'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'share' tagName='li' href=false}}{{#link-to 'share'}}{{t "Share" key='share'}}{{/link-to}}{{/link-to}}
+                {{#link-to 'partners' tagName='li' href=false}}{{#link-to 'partners'}}{{t "Partners" key='partners'}}{{/link-to}}{{/link-to}}
               </ul>
               <div>
                 <div style="float: right; margin-top: 15px; padding-right: 25px;">
@@ -181,6 +182,80 @@
   </div>
 </script>
 
+<script type="text/x-handlebars" data-template-name="partners">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>{{t "See Who's Supporting the Open Board Format" key='see_partners'}}</h2>
+      <p>
+        {{t "Open standards like the Open Board Format can't get anywhere without support from other organizations, and we encourage everyone to thank these vendors and groups for investing in a solution that puts control and flexibility back in the hands of the users and communicators. We're proud to have the following groups implementing and offering other support for this new cross-platform file format." key='partners_1'}}
+      </p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{t "Organization" key='organization'}}</th>
+            <th>{{t "Compliance" key='compliance'}}</th>
+            <th style="width: 30%">{{t "Description" key='description'}}</th>
+            <th>{{t "Date Updated" key='date_updated'}}</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="https://www.mycoughdrop.com" target="_blank">
+                <img src="https://www.mycoughdrop.com/logo.png" style="width: 40px;"/>
+                {{t "CoughDrop" key='cough_drop'}}
+              </a>
+            </td>
+            <td>{{t "native .obf/.obz import and export" key='obf_import_export'}}</td>
+            <td>{{t "CoughDrop is the Open Board Format author and maintainer." key='coughdrop_maintains_obf'}}</td>
+            <td>{{t "April 2015" key='apr_2015'}}</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://www.picto4.me/" target="_blank">
+                <img src="http://i.imgur.com/tlAvntZ.png" style="width: 40px;"/>
+                {{t "Picto4Me" key='picto4me'}}
+              </a>
+            </td>
+            <td>{{t "one-way conversion from .zip to .obf/.obz" key='one_way_zip_to_obf_obz'}}</td>
+            <td>{{t "Picto4Me has advocated for the Open Board Format and provided resources to help create a conversion tool from their file exports to .obf/.obz files." key='picto4me_notes'}}</td>
+            <td>{{t "January 2015" key='jan_2015'}}</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://sensorysoftware.com/" target="_blank">
+                <img src="http://i.imgur.com/lviP7Cg.jpg" style="width: 40px;"/>
+                {{t "Sensory Software" key='sensory_software'}}
+              </a>
+            </td>
+            <td>{{t "one-way conversion from .xml to .obf" key='one_way_xml_to_obf'}}</td>
+            <td>
+              {{t "Sensory Software's AAC app" key='grid_2_pre'}}
+              <a href="http://sensorysoftware.com/grid-software-for-aac/grid2_aac_software/" target="_blank">{{t "The Grid 2" key='the_grid_2'}}</a>
+              {{t "has a publicly-documented file format, so with Sensory Software's support we have built a conversion tool from The Grid 2 xml files to .obf files." key='grid_2_notes'}}
+            </td>
+            <td>{{t "January 2015" key='jan_2015'}}</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://origamirobotics.com/" target="_blank">
+                <img src="http://i.imgur.com/BQr04LP.png" style="width: 40px;"/>
+                {{t "Origami Robotics" key='origami_robotics'}}
+              </a>
+            </td>
+            <td>{{t "support in development" key='in_development'}}</td>
+            <td>{{t "Origami Robotics has advocated for the Open Board Format and is current working on implementing support in the mobile app for their therapy robot Romibo." key='romibo_notes'}}</td>
+            <td>{{t "April 2015" key='apr_2015'}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <p>
+        {{t "If your vendor isn't listed, please contact them and encourage them to adopt open standards like the Open Board Format to better support their users." key='partners_2'}}
+      </p>
+    </div>
+  </div>
+</script>
+
 <script type="text/x-handlebars" data-template-name="share">
   <div class="row">
     <div class="col-sm-12">
@@ -221,12 +296,10 @@
     <div class="col-sm-3">
       <h3>{{t "File Converter" key='external_converter'}}</h3>
       <p>{{t "This tool will take files from known formats and convert them to valid .obf and .obz files." key='converter_explanation'}}</p>
-      <p>{{t "The list of known file types will hopefully grow over time, but here is the current list:" key='supported_file_types'}}</p>
-      <ul>
-        <li><a href="https://www.mycoughdrop.com" target="_blank">CoughDrop</a> - two-way native</li>
-        <li><a href="http://sensorysoftware.com/grid-software-for-aac/grid2_aac_software/" target="_blank">The Grid 2</a> - convert-to-obf</li>
-        <li><a href="http://www.picto4.me/" target="_blank">Picto4Me</a> - convert-to-obf</li>
-      </ul>
+      <p>
+        {{t "The list of known file types will hopefully grow over time, but" key='supported_file_types'}}
+        {{#link-to 'partners'}}{{t "you can see the current list here." key='partners_list'}}{{/link-to}}
+      </p>
     </div>
     <div class="col-sm-3">
       <h3>{{t "Translation Helper" key='translation_helper'}}</h3>

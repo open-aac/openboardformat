@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/examples' => ember_handler
   get '/tools' => ember_handler
   get '/share' => ember_handler
+  get '/partners' => ember_handler
   
   post '/converter/upload_params' => 'conversions#upload_params'
   post '/converter/convert' => 'conversions#convert'
