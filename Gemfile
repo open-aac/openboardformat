@@ -31,4 +31,4 @@ gem 'obf'
 # Use unicorn as the app server
 gem 'unicorn'
 
-ruby "2.1.5"
+ruby "2.3.0"
