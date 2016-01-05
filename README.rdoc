@@ -25,3 +25,7 @@ hunky dory!
 === TODO
 
 Specs
+
+=== License
+
+Licensed under the MIT License
