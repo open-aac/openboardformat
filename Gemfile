@@ -16,9 +16,9 @@ group :production do
   gem 'pg'
 end
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.5'
 gem 'typhoeus'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'resque'
 gem 'rails_12factor', group: :production
