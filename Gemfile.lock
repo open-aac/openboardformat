@@ -66,7 +66,7 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    obf (0.7.5)
+    obf (0.7.6)
       CFPropertyList
       json
       mime-types
