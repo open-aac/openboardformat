@@ -101,6 +101,98 @@ OpenBoards.ToolsController = Ember.Controller.extend({
   }
 });
 
+OpenBoards.DocsController = Ember.Controller.extend({
+  board_view: function() {
+    return this.get('current_view') != 'logs';
+  }.property('current_view'),
+  actions: {
+    show_view: function(view) {
+      this.set('current_view', view);
+    }
+  }
+});
+
+OpenBoards.ExamplesController = Ember.Controller.extend({
+  boards: function() {
+    return [
+      {
+        name: "CommuniKate 20",
+        url: "http://bob.com",
+        license: "CC-By NC-SA",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "",
+        pdf_url: "",
+        size: 13,
+        author: "Kate McCallum",
+        image_url: "/optikey.png",
+        description: "CommuniKate 20 is a functional communication board with 20 buttons per board created by Kate McCallum for the adult population of communicators that she serves."
+      },
+      {
+        name: "CommuniKate 12",
+        url: "http://bob.com",
+        license: "CC-By NC-SA",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "",
+        pdf_url: "",
+        size: 12,
+        author: "Kate McCallum",
+        image_url: "/optikey.png",
+        description: "CommuniKate 12 is a smaller version of CommuniKate 20, it has only 12 buttons per board but offers the same style of layout and functional style of communication."
+      },
+      {
+        name: "Project Core",
+        url: "http://bob.com",
+        license: "CC-By",
+        preview_url: "",
+        pdf_url: "",
+        size: 10,
+        author: "UNC Chapel Hill",
+        image_url: "/optikey.png",
+        description: "Project core is a research-based initiative to ensure all communicators have at least one option for beginning core-base communication."
+      },
+      {
+        name: "Quick Core 24",
+        url: "http://bob.com",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "",
+        pdf_url: "",
+        size: 10,
+        author: "CoughDrop",
+        image_url: "/optikey.png",
+        description: "Quick Core 24 is a core, motor-planning based vocabulary set with up to 24 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Quick Core 60",
+        url: "http://bob.com",
+        license: "CC-By",
+        preview_url: "",
+        pdf_url: "",
+        size: 10,
+        author: "CoughDrop",
+        image_url: "/optikey.png",
+        description: "Quick Core 60 is a core, motor-planning based vocabulary set with up to 60 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Quick Core 112",
+        url: "http://bob.com",
+        license: "CC-By",
+        preview_url: "",
+        pdf_url: "",
+        size: 10,
+        author: "CoughDrop",
+        image_url: "/optikey.png",
+        description: "Quick Core 112 is a core, motor-planning based vocabulary set with up to 112 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      }
+    ];
+  }.property(),
+  actions: {
+    show_view: function(view) {
+      this.set('current_view', view);
+    }
+  }
+});
+
 OpenBoards.LoadingStatusView = Ember.ModalView;
 OpenBoards.LoadingStatusController = Ember.ModalController.extend({
   toggle_width: function() {

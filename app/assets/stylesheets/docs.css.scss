@@ -88,3 +88,24 @@
     padding-right: 60px;
   }
 }
+.board_preview {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  height: 320px;
+  padding: 5px 10px;
+  margin-bottom: 35px;
+  strong {
+    font-size: 20px;
+  }
+  strong, em {
+    text-align: center;
+    display: block;
+  }
+  img {
+    float: left;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    object-position: center;
+  }
+}
