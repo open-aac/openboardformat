@@ -16,7 +16,7 @@ group :production do
   gem 'pg'
 end
 
-gem 'rails', '4.2.5'
+gem 'rails', '~> 5.0.3'
 gem 'typhoeus'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -31,4 +31,4 @@ gem 'obf'
 # Use unicorn as the app server
 gem 'unicorn'
 
-ruby "2.3.0"
+ruby "2.5.3"
