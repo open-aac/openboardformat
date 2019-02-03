@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20141202200534) do
 
-  create_table "progresses", force: true do |t|
+  create_table "progresses", force: :cascade do |t|
     t.text     "settings"
     t.string   "nonce"
     t.datetime "started_at"
