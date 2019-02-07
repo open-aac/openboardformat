@@ -386,7 +386,9 @@
           <a {{bind-attr href=board.preview_url}}><img {{bind-attr src=board.image_url}}/></a>
           <div style='text-align: center;'>
             <a {{bind-attr href=board.url}}>{{t "download (" key='download_paren'}}{{board.size}}{{t " Mb)" key='paren_megabytes'}}</a> | 
-            <a {{bind-attr href=board.pdf_url}}>{{t "pdf" key='pdf'}}<a/> | 
+            {{#if board.pdf_url}}
+              <a {{bind-attr href=board.pdf_url}}>{{t "pdf" key='pdf'}}<a/> | 
+            {{/if}}
             <a {{bind-attr href=board.preview_url}}>{{t "demo" key='demo'}}<a/>
           </div>
           {{board.description}}
