@@ -103,10 +103,11 @@ OpenBoards.ToolsController = Ember.Controller.extend({
 
 OpenBoards.DocsController = Ember.Controller.extend({
   board_view: function() {
-    return this.get('current_view') != 'logs';
+    return this.get('current_view') != 'logs' && location.hash != '#logs';
   }.property('current_view'),
   actions: {
     show_view: function(view) {
+      location.hash = "#" + view;
       this.set('current_view', view);
     }
   }
