@@ -157,15 +157,9 @@
   <div class="row">
     <div class="col-sm-12">
       <ul class='nav nav-pills'>
-      {{#if board_view}}
-        <li class='active'><a href="#" {{action 'show_view' 'boards'}}>Open Board Documentation</a></li>
-        <li><a href="#" {{action 'show_view' 'logs'}}>Open Logging Documentation</a></li>
-      {{else}}
-        <li><a href="#" {{action 'show_view' 'boards'}}>Open Board Documentation</a></li>
-        <li class='active'><a href="#" {{action 'show_view' 'logs'}}>Open Logging Documentation</a></li>
-      {{/if}}
+        <li class='active'><a href="#">Open Board Documentation</a></li>
+        <li>{{#link-to 'logs'}}>Open Logging Documentation{{/link-to}}</li>
       </ul>
-      {{#if board_view}}
         <p>
           {{t "Below is the current version of the open board file format specification. If you want to provide comments you can" key='documentation_intro'}}
           <a href="https://docs.google.com/document/d/1Bnl5neOf9-y53yOAGjd8BzQ7jvAdLhcB6y9Zw7ITYbA/edit" target="_blank">
@@ -173,7 +167,17 @@
           </a>
         </p>
         <iframe src="https://docs.google.com/document/d/1Bnl5neOf9-y53yOAGjd8BzQ7jvAdLhcB6y9Zw7ITYbA/pub?embedded=true" frameborder="0" style="width: 100%; height: calc(100vh - 150px); border: 2px solid #888;"></iframe>
-      {{else}}
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="logs">
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class='nav nav-pills'>
+        <li>{{#link-to 'docs'}}Open Board Documentation{{/link-to}}</li>
+        <li class='active'><a href="#">Open Logging Documentation</a></li>
+      </ul>
       <p>
       {{t "Below is the current version of the open board logging format specification. If you want to provide comments you can" key='documentation_intro'}}
       <a href="https://docs.google.com/document/d/1KpC82nQc8RscgYZWKQo-y_LlKSwd8VsuvhnjrIve2f4/edit" target="_blank">
@@ -181,7 +185,6 @@
       </a>
     </p>
     <iframe src="https://docs.google.com/document/d/e/2PACX-1vTxm6mddD49CSHmr8QtOOTMCpCIlBQgUE-pAGYJQo9sIyxn65kMoMOEcRtL8J3J4KtsiOoWmyEB8Epi/pub?embedded=true" frameborder="0" style="width: 100%; height: calc(100vh - 150px); border: 2px solid #888;"></iframe>
-  {{/if}}
     </div>
   </div>
 </script>

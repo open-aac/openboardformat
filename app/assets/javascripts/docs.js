@@ -31,6 +31,7 @@ OpenBoards.Router.reopen({
 OpenBoards.Router.map(function () {
   this.route('index', { path: '/' });
   this.route('docs', { path: '/docs' });
+  this.route('logs', { path: '/logs' });
   this.route('examples', { path: '/examples' });
   this.route('tools', { path: '/tools' });
   this.route('share', { path: '/share' });
@@ -103,14 +104,16 @@ OpenBoards.ToolsController = Ember.Controller.extend({
 
 OpenBoards.DocsController = Ember.Controller.extend({
   board_view: function() {
-    return this.get('current_view') != 'logs' && location.hash != '#logs';
+    return this.get('current_view') != 'logs';
   }.property('current_view'),
   actions: {
     show_view: function(view) {
-      location.hash = "#" + view;
       this.set('current_view', view);
     }
   }
+});
+
+OpenBoards.LogsController = Ember.Controller.extend({
 });
 
 OpenBoards.ExamplesController = Ember.Controller.extend({
