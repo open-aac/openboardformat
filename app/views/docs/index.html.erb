@@ -339,7 +339,7 @@
     <div class="col-sm-12">
       <h2>{{t "Vocabulary Analysis" key='vocab_analysis'}}</h2>
       <p>
-        {{t "Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
+        {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
       </p>
     </div>
   </div>
@@ -508,7 +508,7 @@
       <button class="btn btn-primary btn-lg" {{action "convert_file"}} {{bind-attr disabled=bad_convert_file}} style="width: 100%;">Convert File</button>
     </div>
     <div class="col-sm-3" style="text-align: center;">
-      <div style="margin-bottom: 10px;>
+      <div style="margin-bottom: 10px;">
         {{input type="file" value=analyze_file id="analyze_file"}}
       </div>
       <button class="btn btn-primary btn-lg" {{action "analyze_file"}} {{bind-attr disabled=bad_analyze_file}} style="width: 100%;">Analyze Vocabulary</button>
