@@ -348,13 +348,13 @@
       {{t "Choose a comparison vocabulary" key='choose_comp'}}
       <select id='comp' class='form-control' style='display: inline; width: 200px;'>
         <option value="none">[ Choose a Vocabulary ]</option>
+        <option value="l84f">LAMP Words For Life 84</option>
         <option value="qc24">Quick Core 24</option>
         <option value="qc60">Quick Core 60</option>
         <option value="qc112">Quick Core 112</option>
-        <option value="l84f">LAMP Words For Lifee 84</option>
+        <option value="sfy">Speak For Yourself</option>
         <option value="wp108">WordPower 108</option>
         <option value="wp80">WordPower 80</option>
-        <option value="sfy">Speak For Yourself</option>
       </select>
       <button class="btn btn-primary" {{action "analyze"}}>{{t "Run Analysis" key='run_analysis'}}</button>
     </div>
@@ -394,6 +394,14 @@
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.extra_words}}
+                  {{button}}&nbsp;&nbsp;
+                {{/each}}
+              </p>
+            </div>
+            <h3>{{t "Words Shared with Comparison Vocabulary" key='words_shared_to_comp'}} ({{results.overlapping_words.length}})</h3>
+            <div style='max-height: 90px; overflow: auto;'>
+              <p>
+                {{#each button in results.overlapping_words}}
                   {{button}}&nbsp;&nbsp;
                 {{/each}}
               </p>
