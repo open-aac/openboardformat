@@ -8,7 +8,7 @@ group :development, :test do
 #  gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'simplecov', :require => false
-  gem 'sqlite3'
+  gem 'sqlite3', "~> 1.3.6"
 #  gem 'debugger'
 end
 
@@ -24,6 +24,7 @@ gem 'resque'
 gem 'rails_12factor', group: :production
 gem 'heroku-deflater', :group => :production
 gem 'obf'
+gem 'aac-metrics'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 # gem 'spring',        group: :development

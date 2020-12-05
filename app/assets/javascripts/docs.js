@@ -15,6 +15,35 @@ if (OpenBoards.use_push_state) {
   });
 } 
 
+var watch_for_progress = function(progress) {
+  return new Ember.RSVP.Promise(function(resolve, reject) {
+    var errors = 0;
+    var ping = function() {
+      promise_ajax({
+        url: "/converter/status?code=" + progress.code,
+        type: "GET"
+      }).then(function(data) {
+        errors = 0;
+        if(data.status == 'pending') {
+          Ember.run.later(ping, 3000);
+        } else if(data.status == 'finished') {
+          resolve(data.result);
+        } else if(data.status == 'errored') {
+          reject({error: "processing failed"});
+        }
+      }, function() {
+        errors++;
+        if(errors > 3) {
+          reject({error: "status check failed"});
+        } else {
+          Ember.run.later(ping, 3000);
+        }
+      });
+    };
+    Ember.run.later(ping, 3000);
+  });
+}
+
 OpenBoards.Router.reopen({
   notifyGoogleAnalytics: function() {
     if(window.ga) {
@@ -34,6 +63,7 @@ OpenBoards.Router.map(function () {
   this.route('logs', { path: '/logs' });
   this.route('examples', { path: '/examples' });
   this.route('tools', { path: '/tools' });
+  this.route('analyze', { path: '/analyze' });
   this.route('share', { path: '/share' });
   this.route('partners', { path: '/partners' });
 });
@@ -83,6 +113,9 @@ OpenBoards.ToolsController = Ember.Controller.extend({
   bad_convert_file: function() {
     return !this.get('convert_file');
   }.property('convert_file'),
+  bad_analyze_file: function() {
+    return !this.get('analyze_file');
+  }.property('analyze_file'),
   bad_preview_file: function() {
     return !this.get('preview_file');
   }.property('preview_file'),
@@ -109,6 +142,72 @@ OpenBoards.DocsController = Ember.Controller.extend({
   actions: {
     show_view: function(view) {
       this.set('current_view', view);
+    }
+  }
+});
+
+OpenBoards.AnalyzeController = Ember.Controller.extend({
+  // query param url, prompt for comparison if any, submit button
+  // warning that data will only hang around for a week or whatever
+  // NOTE you can set url=prefix to check a preloaded obfset
+  process: function(comp) {
+    var _this = this;
+    _this.set('results', {loading: true});
+    var parts = location.search.replace(/^\?/, '').split(/\&/);
+    var hash = {};
+    parts.forEach(function(str) {
+      var pieces = str.split(/\=/);
+      hash[decodeURIComponent(pieces[0])]  = decodeURIComponent(pieces[1]);
+    });
+    if(hash.url) {
+      var analyze = promise_ajax({
+        url: "/converter/analyze",
+        type: "POST",
+        data: {
+          url: hash.url,
+          comp: comp
+        }
+      }).then(function(data) {
+        return watch_for_progress(data);
+      });
+  
+      analyze.then(function(data) {
+        console.log("ANALYIS COMPLETE", data);
+        _this.set('results', data);
+      }, function(err) {
+        _this.set('results', {error: true});
+      });  
+    }
+  },
+  missing: function() {
+    var missing = this.get('results.missing');
+    if(missing) {
+      var res = [];
+      for(var key in missing) {
+        res.push(missing[key]);
+      }
+      return res;
+    }
+  }.property('results.missing'),
+  levels: function() {
+    var levels = this.get('results.levels');
+    if(levels) {
+      var res = [];
+      for(var n in levels) {
+        var lvl = parseInt(n, 10);
+        res.push({
+          level: lvl + 1,
+          plural: lvl > 0,
+          buttons: levels[n]
+        });
+      }
+      return res;
+    }
+  }.property('results.levels'),
+  actions: {
+    analyze: function() {
+      var comp = $("#comp").val();
+      this.process(comp);
     }
   }
 });
@@ -272,6 +371,34 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
       _this.set('error', err.error);
     });
   },
+  analyze_file: function() {
+    this.set('header', i18n.t('vocabulary_analysis', "Vocabulary Analysis"));
+    this.set('loader', i18n.t('generating_results', "Generating Results..."));
+    var file = Ember.$("#analyze_file")[0].files[0];
+    var _this = this;
+    
+    var upload = _this.upload_file(file);
+    
+    var analyze = upload.then(function(data) {
+      return promise_ajax({
+        url: "/converter/obfset",
+        type: "POST",
+        data: {
+          url: data.url,
+          type: 'obf'
+        }
+      }).then(function(data) {
+        return _this.watch_for_progress(data);
+      });
+    });
+    
+    analyze.then(function(data) {
+      location.href = "/analyze?url=" + encodeURIComponent(data);
+      // redirect to wherever the results are being housed
+    }, function(err) {
+      _this.set('error', err.error);
+    });
+  },
   validate_file: function() {
     this.set('header', i18n.t('file_validation', "File Validation"));
     this.set('loader', i18n.t('validating_file', "Validating OBF File..."));
@@ -390,32 +517,7 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
     });
   },
   watch_for_progress: function(progress) {
-    return new Ember.RSVP.Promise(function(resolve, reject) {
-      var errors = 0;
-      var ping = function() {
-        promise_ajax({
-          url: "/converter/status?code=" + progress.code,
-          type: "GET"
-        }).then(function(data) {
-          errors = 0;
-          if(data.status == 'pending') {
-            Ember.run.later(ping, 3000);
-          } else if(data.status == 'finished') {
-            resolve(data.result);
-          } else if(data.status == 'errored') {
-            reject({error: "processing failed"});
-          }
-        }, function() {
-          errors++;
-          if(errors > 3) {
-            reject({error: "status check failed"});
-          } else {
-            Ember.run.later(ping, 3000);
-          }
-        });
-      };
-      Ember.run.later(ping, 3000);
-    });
+    return watch_for_progress(progress);
   },
   actions: {
     toggle: function(result) {

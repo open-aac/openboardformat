@@ -17,6 +17,16 @@ class ConversionsController < ApplicationController
     p = Progress.schedule(Converter, :validate_file, params['url'], params['type'])
     render json: p.status
   end
+
+  def obfset
+    p = Progress.schedule(Converter, :generate_analysis, params['url'], params['type'])
+    render json: p.status
+  end
+
+  def analyze
+    p = Progress.schedule(Converter, :analyze_obfset, params['url'], params['comp'])
+    render json: p.status
+  end
   
   def status
     p = Progress.find_by_code(params['code'])

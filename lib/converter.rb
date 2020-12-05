@@ -32,6 +32,51 @@ module Converter
       raise "unknown validator: #{type}"
     end
   end
+
+  def self.analyze_obfset(url, comp)
+    obfset = AACMetrics::Loader.retrieve(url)
+    compset = AACMetrics::Loader.retrieve(comp)
+    AACMetrics::Metrics.analyze_and_compare(obfset, compset)
+  end
+
+  def self.generate_analysis(url, type)
+    if !url || !type
+      raise "missing parameter"
+    end
+    # download the file
+    fn = url.split(/\//)[-1].split(/\?/)[0]
+    stash_path = OBF::Utils.temp_path(fn)
+    f = File.open(stash_path, 'wb')
+    f.binmode
+    res = Typhoeus.get(url)
+    f.write res.body
+    f.close
+
+    # run it through the converter
+    path = OBF::Utils.temp_path('result')
+    hash = OBF::UnknownFile.to_external(stash_path)
+
+    obfset = AACMetrics::Loader.retrieve(hash)
+    f = File.open(path, 'w')
+    f.puts obfset.to_json
+    f.close
+    fn = File.basename(path)
+    content_type = 'application/json'
+    
+    file = File.open(path, 'rb')
+    # upload the converted file
+    params = self.remote_upload_params(fn, content_type)
+    post_params = params[:upload_params]
+    post_params[:file] = file
+    res = Typhoeus.post(params[:upload_url], body: post_params)
+    file.close
+    # return the final url on success
+    if res.success?
+      params[:full_url]
+    else
+      raise "analysis failed"
+    end
+  end
   
   def self.convert_file(url, type)
     if !url || !type

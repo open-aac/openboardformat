@@ -158,7 +158,7 @@
     <div class="col-sm-12">
       <ul class='nav nav-pills'>
         <li class='active'><a href="#">Open Board Documentation</a></li>
-        <li>{{#link-to 'logs'}}>Open Logging Documentation{{/link-to}}</li>
+        <li>{{#link-to 'logs'}}Open Logging Documentation{{/link-to}}</li>
       </ul>
         <p>
           {{t "Below is the current version of the open board file format specification. If you want to provide comments you can" key='documentation_intro'}}
@@ -334,6 +334,129 @@
   </div>
 </script>
 
+<script type="text/x-handlebars" data-template-name="analyze">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>{{t "Vocabulary Analysis" key='vocab_analysis'}}</h2>
+      <p>
+        {{t "Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      {{t "Choose a comparison vocabulary" key='choose_comp'}}
+      <select id='comp' class='form-control' style='display: inline; width: 200px;'>
+        <option value="none">[ Choose a Vocabulary ]</option>
+        <option value="qc24">Quick Core 24</option>
+        <option value="qc60">Quick Core 60</option>
+        <option value="qc112">Quick Core 112</option>
+        <option value="l84f">LAMP Words For Lifee 84</option>
+        <option value="wp108">WordPower 108</option>
+        <option value="wp80">WordPower 80</option>
+        <option value="sfy">Speak For Yourself</option>
+      </select>
+      <button class="btn btn-primary" {{action "analyze"}}>{{t "Run Analysis" key='run_analysis'}}</button>
+    </div>
+  </div>
+  {{#if results}}
+    <div class="row" id='results'>
+      <div class='col-sm-12'>
+        <h2>{{t "Analysis Results" key='analysis_results'}}</h2>
+        {{#if results.loading}}
+          <p>{{t "Loading Analysis..." key='loading_analysis'}}</p>
+        {{else}}
+          {{#if results.error}}
+            <p>{{t "Error Loading Analysis" key='error_loading_analysis'}}</p>
+          {{else}}
+            <h3>{{t "Total Boards:" key='total_boards'}} {{results.total_boards}}</h3>
+            <h3>{{t "Total Buttons:" key='total_buttons'}} {{results.total_buttons}}</h3>
+            <h3>{{t "Available Words/Phrases" key='all_buttons'}}</h3>
+            {{#each level in levels}}
+              <h4>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>
+              <div style='max-height: 90px; overflow: auto;'>
+                <p>
+                  {{#each button in level.buttons}}
+                    {{button.label}}&nbsp;&nbsp;
+                  {{/each}}
+                </p>
+              </div>
+            {{/each}}
+            <h3>{{t "Words Missing in Comparison Vocabulary" key='words_missing_compared_to_comp'}} ({{results.missing_words.length}})</h3>
+            <div style='max-height: 90px; overflow: auto;'>
+              <p>
+                {{#each button in results.missing_words}}
+                  {{button}}&nbsp;&nbsp;
+                {{/each}}
+              </p>
+            </div>
+            <h3>{{t "Extra Words not in Comparison Vocabulary" key='words_extra_compared_to_comp'}} ({{results.extra_words.length}})</h3>
+            <div style='max-height: 90px; overflow: auto;'>
+              <p>
+                {{#each button in results.extra_words}}
+                  {{button}}&nbsp;&nbsp;
+                {{/each}}
+              </p>
+            </div>
+            {{#each missing in missing}}
+              {{#if missing.list.length}}
+                <h3>{{t "Words Missing Compared to" key='words_missing_compared_to'}} {{missing.name}} ({{missing.list.length}})</h3>
+                <div style='max-height: 90px; overflow: auto;'>
+                  <p>
+                    {{#each button in missing.list}}
+                      {{button}}&nbsp;&nbsp;
+                    {{/each}}
+                  </p>
+                </div>
+              {{/if}}
+            {{/each}}
+            <h3>{{t "All Words/Phrases Sorted by Ease of Access" key='buttons_sorted'}}</h3>
+            <div style='max-height: 315px; overflow: auto;'>
+            <table class='table table-striped table-hover'>
+              <thead>
+                <tr>
+                  <th style='width: 25%;'>{{t "Word/Phrase" key='word_phrase'}}</th>
+                  <th style='width: 5%;'>{{t "Level" key='level'}}</th>
+                  <th>{{t "Effort Score" key='effort_score'}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each button in results.buttons}}
+                  <tr>
+                    <td>{{button.label}}</td>
+                    <td>{{button.level}}</td>
+                    <td>{{button.effort}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            </div>
+
+            <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
+            <div style='max-height: 90px; overflow: auto;'>
+              <p>
+                {{#each button in results.high_effort_words}}
+                  {{button}}&nbsp;&nbsp;
+                {{/each}}
+              </p>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+  <div class="row" style='margin-top: 50px;'>
+    <div class="col-sm-12">
+      <p>
+        {{t "Note: the analyzer is available programmatically via the" key='aac_metrics_gem_pretext'}}
+        <a href="https://www.github.com/open-aac/aac-metrics">{{t "aac-metrics ruby gem library" key='aac_metrics_gem'}}</a>.
+      </p>
+    </div>
+  </div>
+
+</script>
+
+
 <script type="text/x-handlebars" data-template-name="tools">
   <div class="row">
     <div class="col-sm-12">
@@ -360,6 +483,10 @@
         {{#link-to 'partners'}}{{t "you can see the current list here." key='partners_list'}}{{/link-to}}
       </p>
     </div>
+    <div class="col-sm-3">
+      <h3>{{t "Vocabulary Analysis" key='vocab_analysis'}}</h3>
+      <p>{{t "You can compare your board set to popular vocabulary sets to learn more about the content and how it can be improved upon." key='vocab_analysis_explanation'}}</p>
+    </div>
   </div>
   <div class="row" style="margin-top: 15x; margin-bottom: 25px;">
     <div class="col-sm-3" style="text-align: center;">
@@ -379,6 +506,12 @@
         {{input type="file" value=convert_file id="convert_file"}}
       </div>
       <button class="btn btn-primary btn-lg" {{action "convert_file"}} {{bind-attr disabled=bad_convert_file}} style="width: 100%;">Convert File</button>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+      <div style="margin-bottom: 10px;>
+        {{input type="file" value=analyze_file id="analyze_file"}}
+      </div>
+      <button class="btn btn-primary btn-lg" {{action "analyze_file"}} {{bind-attr disabled=bad_analyze_file}} style="width: 100%;">Analyze Vocabulary</button>
     </div>
   </div>
   <div class="row">
