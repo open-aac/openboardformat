@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/analyze' => ember_handler
   get '/share' => ember_handler
   get '/partners' => ember_handler
+  get '/words' => 'docs#word_list'
   
   post '/converter/upload_params' => 'conversions#upload_params'
   post '/converter/convert' => 'conversions#convert'

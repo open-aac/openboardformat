@@ -341,6 +341,9 @@
       <p>
         {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
       </p>
+      <p>
+        {{t "The comparison vocabulary sets are presented strictly for purposes of public information, and are stored as a structured list of only words and phrases. Reference to any organization or commercial product does not constitute endorsement or participation by the commercial entities or copyright holders, and the information may be from outdated versions of material." key='name_disclaimer'}}
+      </p>
     </div>
   </div>
   <div class="row">
@@ -357,6 +360,7 @@
         <option value="wp80">WordPower 80</option>
       </select>
       <button class="btn btn-primary" {{action "analyze"}}>{{t "Run Analysis" key='run_analysis'}}</button>
+      <button class="btn btn-primary" {{action "raw_list"}}>{{t "View the Raw Word List" key='raw_list'}}</button>
     </div>
   </div>
   {{#if results}}
@@ -373,8 +377,8 @@
             <h3>{{t "Total Buttons:" key='total_buttons'}} {{results.total_buttons}}</h3>
             <h3>{{t "Available Words/Phrases" key='all_buttons'}}</h3>
             {{#each level in levels}}
-              <h4>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>
-              <div style='max-height: 90px; overflow: auto;'>
+              <h4 style='margin-bottom: 0;'>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>
+              <div style='max-height: 90px; overflow: auto; margin-bottom: 10px;'>
                 <p>
                   {{#each button in level.buttons}}
                     {{button.label}}&nbsp;&nbsp;
@@ -382,7 +386,7 @@
                 </p>
               </div>
             {{/each}}
-            <h3>{{t "Words Missing in Comparison Vocabulary" key='words_missing_compared_to_comp'}} ({{results.missing_words.length}})</h3>
+            <h3>{{t "Words Missing vs. Comparison Vocabulary" key='words_missing_compared_to_comp'}} ({{results.missing_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.missing_words}}

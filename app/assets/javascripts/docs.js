@@ -208,6 +208,12 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
     analyze: function() {
       var comp = $("#comp").val();
       this.process(comp);
+    },
+    raw_list: function() {
+      var comp = $("#comp").val();
+      if(comp && comp != 'none') {
+        window.open("/words?list=" + encodeURIComponent(comp), '_blank')
+      }
     }
   }
 });

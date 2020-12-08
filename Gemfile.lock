@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (3.0.3)
-    aac-metrics (0.0.2)
+    aac-metrics (0.0.3)
       json
       typhoeus
     actioncable (5.0.7.2)
