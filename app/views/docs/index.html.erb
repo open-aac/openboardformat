@@ -431,6 +431,9 @@
                   <th style='width: 25%;'>{{t "Word/Phrase" key='word_phrase'}}</th>
                   <th style='width: 5%;'>{{t "Level" key='level'}}</th>
                   <th>{{t "Effort Score" key='effort_score'}}</th>
+                  <th>{{t "In Comp" key='in_comp'}}</th>
+                  <th style='width: 5%;'>{{t "Comp Level" key='comp_level'}}</th>
+                  <th>{{t "Comp Effort" key='comp_effort'}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -439,20 +442,26 @@
                     <td>{{button.label}}</td>
                     <td>{{button.level}}</td>
                     <td>{{button.effort}}</td>
+                    <td>{{#if button.comp_effort}}Y{{/if}}</td>
+                    <td>{{#if button.comp_effort}}{{button.comp_level}}{{/if}}</td>
+                    <td>{{#if button.comp_effort}}{{button.comp_effort}}{{/if}}</td>
                   </tr>
                 {{/each}}
               </tbody>
             </table>
             </div>
 
-            <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
-            <div style='max-height: 90px; overflow: auto;'>
-              <p>
-                {{#each button in results.high_effort_words}}
-                  {{button}}&nbsp;&nbsp;
-                {{/each}}
-              </p>
-            </div>
+            {{#if results.high_effort_words.length}}
+              <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
+              <em>when compared to a collection of core word sets, these words are more difficult to access than the average</em>
+              <div style='max-height: 90px; overflow: auto;'>
+                <p>
+                  {{#each button in results.high_effort_words}}
+                    {{button}}&nbsp;&nbsp;
+                  {{/each}}
+                </p>
+              </div>
+            {{/if}}
           {{/if}}
         {{/if}}
       </div>
@@ -499,6 +508,10 @@
     <div class="col-sm-3">
       <h3>{{t "Vocabulary Analysis" key='vocab_analysis'}}</h3>
       <p>{{t "You can compare your board set to popular vocabulary sets to learn more about the content and how it can be improved upon." key='vocab_analysis_explanation'}}</p>
+      <div style="margin-top: 10px;">
+        URL or file:
+        {{input type="text" class='form-control' value=analyze_url id="analyze_url"}}
+      </div>
     </div>
   </div>
   <div class="row" style="margin-top: 15x; margin-bottom: 25px;">

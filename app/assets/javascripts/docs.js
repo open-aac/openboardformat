@@ -114,8 +114,8 @@ OpenBoards.ToolsController = Ember.Controller.extend({
     return !this.get('convert_file');
   }.property('convert_file'),
   bad_analyze_file: function() {
-    return !this.get('analyze_file');
-  }.property('analyze_file'),
+    return !this.get('analyze_file') && !this.get('analyze_url');
+  }.property('analyze_file', 'analyze_url'),
   bad_preview_file: function() {
     return !this.get('preview_file');
   }.property('preview_file'),
@@ -125,6 +125,9 @@ OpenBoards.ToolsController = Ember.Controller.extend({
   actions: {
     validate_file: function() {
       modal.open('loading-status', {type: 'validate'});
+    },
+    analyze_file: function() {
+      modal.open('loading-status', {type: 'analyze'});
     },
     preview_file: function() {
       modal.open('loading-status', {type: 'preview'});
@@ -324,6 +327,8 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
       this.convert_file();
     } else if(settings.type == 'validate') {
       this.validate_file();
+    } else if(settings.type == 'analyze') {
+      this.analyze_file();
     } else {
       console.debug("modal type not found");
       modal.close();
@@ -387,22 +392,37 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
     this.set('header', i18n.t('vocabulary_analysis', "Vocabulary Analysis"));
     this.set('loader', i18n.t('generating_results', "Generating Results..."));
     var file = Ember.$("#analyze_file")[0].files[0];
+    var url = Ember.$("#analyze_url").val();
     var _this = this;
-    
-    var upload = _this.upload_file(file);
-    
-    var analyze = upload.then(function(data) {
-      return promise_ajax({
+
+    var analyze = null;
+    if(url) {
+      analyze = promise_ajax({
         url: "/converter/obfset",
         type: "POST",
         data: {
-          url: data.url,
-          type: 'obf'
+          url: url,
+          type: 'url'
         }
       }).then(function(data) {
         return _this.watch_for_progress(data);
       });
-    });
+    } else if(file) {
+      var upload = _this.upload_file(file);
+      var analyze = upload.then(function(data) {
+        return promise_ajax({
+          url: "/converter/obfset",
+          type: "POST",
+          data: {
+            url: data.url,
+            type: 'upload'
+          }
+        }).then(function(data) {
+          return _this.watch_for_progress(data);
+        });
+      });
+        
+    }
     
     analyze.then(function(data) {
       location.href = "/analyze?url=" + encodeURIComponent(data);

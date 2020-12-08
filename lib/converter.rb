@@ -43,19 +43,28 @@ module Converter
     if !url || !type
       raise "missing parameter"
     end
-    # download the file
-    fn = url.split(/\//)[-1].split(/\?/)[0]
-    stash_path = OBF::Utils.temp_path(fn)
-    f = File.open(stash_path, 'wb')
-    f.binmode
-    res = Typhoeus.get(url)
-    f.write res.body
-    f.close
-
-    # run it through the converter
+    # convert to api URL if needed
+    match = url.match(/^https?:\/\/.+coughdrop.com\/([^\/]+\/[^\/]+)$/)
     path = OBF::Utils.temp_path('result')
-    hash = OBF::UnknownFile.to_external(stash_path)
+    hash = nil
+    if type == 'url'
+      if match
+        url = "https://app.mycoughdrop.com/api/v1/boards/#{match[1]}/simple.obf"
+      end
+      hash = JSON.parse(AACMetrics::Loader.process(url).to_json)
+    else
+      # download the file
+      fn = url.split(/\//)[-1].split(/\?/)[0]
+      stash_path = OBF::Utils.temp_path(fn)
+      f = File.open(stash_path, 'wb')
+      f.binmode
+      res = Typhoeus.get(url)
+      f.write res.body
+      f.close
 
+      # run it through the converter
+      hash = OBF::UnknownFile.to_external(stash_path)
+    end
     obfset = AACMetrics::Loader.retrieve(hash)
     f = File.open(path, 'w')
     f.puts obfset.to_json
