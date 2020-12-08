@@ -214,6 +214,12 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       if(comp && comp != 'none') {
         window.open("/words?list=" + encodeURIComponent(comp), '_blank')
       }
+    },
+    weighted_list: function() {
+      var comp = $("#comp").val();
+      if(comp && comp != 'none') {
+        window.open("/words?weights=1&list=" + encodeURIComponent(comp), '_blank')
+      }
     }
   }
 });

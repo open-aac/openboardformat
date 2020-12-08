@@ -8,6 +8,10 @@ class DocsController < ApplicationController
   def word_list
     compset = AACMetrics::Loader.retrieve(params['list'])
     data = AACMetrics::Metrics.analyze(compset)
-    render plain: data[:buttons].map{|b| b[:label] }.compact.uniq.join("\n")
+    if params['weights']
+      render plain: data[:buttons].map{|b| [b[:label], b[:effort]].join(' ') }.compact.uniq.join("\n")
+    else
+      render plain: data[:buttons].map{|b| b[:label] }.compact.uniq.sort_by{|w| w.match(/^[a-zA-Z]/) ? w.downcase : ('zzz' + w.downcase)}.join("\n")
+    end
   end
 end

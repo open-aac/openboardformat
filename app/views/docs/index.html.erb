@@ -360,7 +360,8 @@
         <option value="wp80">WordPower 80</option>
       </select>
       <button class="btn btn-primary" {{action "analyze"}}>{{t "Run Analysis" key='run_analysis'}}</button>
-      <button class="btn btn-primary" {{action "raw_list"}}>{{t "View the Raw Word List" key='raw_list'}}</button>
+      <button class="btn btn-default" {{action "raw_list"}}>{{t "View the Comp Word List" key='raw_list'}}</button>
+      <button class="btn btn-default" {{action "weighted_list"}}>{{t "View the Weighted Comp List" key='weight_list'}}</button>
     </div>
   </div>
   {{#if results}}
