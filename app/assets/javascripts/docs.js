@@ -150,24 +150,28 @@ OpenBoards.DocsController = Ember.Controller.extend({
 });
 
 OpenBoards.AnalyzeController = Ember.Controller.extend({
-  // query param url, prompt for comparison if any, submit button
-  // warning that data will only hang around for a week or whatever
-  // NOTE you can set url=prefix to check a preloaded obfset
-  process: function(comp) {
-    var _this = this;
-    _this.set('results', {loading: true});
+  list_url: function() {
     var parts = location.search.replace(/^\?/, '').split(/\&/);
     var hash = {};
     parts.forEach(function(str) {
       var pieces = str.split(/\=/);
       hash[decodeURIComponent(pieces[0])]  = decodeURIComponent(pieces[1]);
     });
-    if(hash.url) {
+    return hash.url;
+  },
+  // query param url, prompt for comparison if any, submit button
+  // warning that data will only hang around for a week or whatever
+  // NOTE you can set url=prefix to check a preloaded obfset
+  process: function(comp) {
+    var _this = this;
+    _this.set('results', {loading: true});
+    var list_url = this.list_url();
+    if(list_url) {
       var analyze = promise_ajax({
         url: "/converter/analyze",
         type: "POST",
         data: {
-          url: hash.url,
+          url: list_url,
           comp: comp
         }
       }).then(function(data) {
@@ -212,14 +216,20 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       var comp = $("#comp").val();
       this.process(comp);
     },
-    raw_list: function() {
+    raw_list: function(type) {
       var comp = $("#comp").val();
+      if(type == 'list') {
+        comp = this.list_url();
+      }
       if(comp && comp != 'none') {
         window.open("/words?list=" + encodeURIComponent(comp), '_blank')
       }
     },
-    weighted_list: function() {
+    weighted_list: function(type) {
       var comp = $("#comp").val();
+      if(type == 'list') {
+        comp = this.list_url();
+      }
       if(comp && comp != 'none') {
         window.open("/words?weights=1&list=" + encodeURIComponent(comp), '_blank')
       }

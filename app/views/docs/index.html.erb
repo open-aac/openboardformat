@@ -342,6 +342,10 @@
         {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
       </p>
       <p>
+        <button class="btn btn-default" {{action "raw_list" 'list'}}>{{t "View the Raw Word List" key='raw_list'}}</button>
+        <button class="btn btn-default" {{action "weighted_list" 'list'}}>{{t "View the Weighted Word List" key='weighted_list'}}</button>
+      </p>
+      <p>
         {{t "The comparison vocabulary sets are presented strictly for purposes of public information, and are stored as a structured list of only words and phrases. Reference to any organization or commercial product does not constitute endorsement or participation by the commercial entities or copyright holders, and the information may be from outdated versions of material." key='name_disclaimer'}}
       </p>
     </div>
@@ -360,8 +364,8 @@
         <option value="wp80">WordPower 80</option>
       </select>
       <button class="btn btn-primary" {{action "analyze"}}>{{t "Run Analysis" key='run_analysis'}}</button>
-      <button class="btn btn-default" {{action "raw_list"}}>{{t "View the Comp Word List" key='raw_list'}}</button>
-      <button class="btn btn-default" {{action "weighted_list"}}>{{t "View the Weighted Comp List" key='weight_list'}}</button>
+      <button class="btn btn-default" {{action "raw_list" 'comp'}}>{{t "View the Comp Word List" key='raw_comp_list'}}</button>
+      <button class="btn btn-default" {{action "weighted_list" 'comp'}}>{{t "View the Weighted Comp List" key='weight_comp_list'}}</button>
     </div>
   </div>
   {{#if results}}
