@@ -159,10 +159,38 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
     });
     return hash.url;
   },
+  known_names: function() {
+    return {
+      "l84f":"LAMP Words For Life 84",
+      "qc24":"Quick Core 24",
+      "qc60":"Quick Core 60",
+      "qc112":"Quick Core 112",
+      "sfy":"Speak For Yourself",
+      "wp108":"WordPower 108",
+      "wp80":"WordPower 80",
+    };
+  },
+  vocab_name: function() {
+    var hash = this.known_names() || {};
+    if(hash[this.list_url()]) {
+      return hash[this.list_url()];
+    } else {
+      return "Custom Vocabulary";
+    }
+  }.property(''),
+  comp_name: function() {
+    var hash = this.known_names() || {};
+    if(this.get('comp') && hash[this.get('comp')]) {
+      return hash[this.get('comp')];
+    } else {
+      return "Comparison Vocabulary";
+    }
+  }.property('comp'),
   // query param url, prompt for comparison if any, submit button
   // warning that data will only hang around for a week or whatever
   // NOTE you can set url=prefix to check a preloaded obfset
   process: function(comp) {
+    this.set('comp', comp);
     var _this = this;
     _this.set('results', {loading: true});
     var list_url = this.list_url();
@@ -196,6 +224,21 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       return res;
     }
   }.property('results.missing'),
+  cores: function() {
+    var cores = this.get('results.cores');
+    if(cores) {
+      var res = [];
+      for(var key in cores) {
+        res.push({
+          name: cores[key].name,
+          list: cores[key].list,
+          average_effort: Math.round(cores[key].average_effort * 100.0) / 100.0,
+          comp_effort: Math.round(cores[key].comp_effort * 100.0) / 100.0
+        });
+      }
+      return res;
+    }
+  }.property('results.cores'),
   levels: function() {
     var levels = this.get('results.levels');
     if(levels) {

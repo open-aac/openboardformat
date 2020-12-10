@@ -337,13 +337,13 @@
 <script type="text/x-handlebars" data-template-name="analyze">
   <div class="row">
     <div class="col-sm-12">
-      <h2>{{t "Vocabulary Analysis" key='vocab_analysis'}}</h2>
-      <p>
-        {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
-      </p>
+      <h2>{{t "Vocabulary Analysis" key='vocab_analysis'}} - {{vocab_name}}</h2>
       <p>
         <button class="btn btn-default" {{action "raw_list" 'list'}}>{{t "View the Raw Word List" key='raw_list'}}</button>
         <button class="btn btn-default" {{action "weighted_list" 'list'}}>{{t "View the Weighted Word List" key='weighted_list'}}</button>
+      </p>
+      <p>
+        {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
       </p>
       <p>
         {{t "The comparison vocabulary sets are presented strictly for purposes of public information, and are stored as a structured list of only words and phrases. Reference to any organization or commercial product does not constitute endorsement or participation by the commercial entities or copyright holders, and the information may be from outdated versions of material." key='name_disclaimer'}}
@@ -371,15 +371,19 @@
   {{#if results}}
     <div class="row" id='results'>
       <div class='col-sm-12'>
-        <h2>{{t "Analysis Results" key='analysis_results'}}</h2>
+        <h2>{{t "Analysis Results" key='analysis_results'}} {{#if results.analysis_version}}<span style='font-size: 14px;'>(analysis version {{results.analysis_version}})</span>{{/if}}</h2>
         {{#if results.loading}}
           <p>{{t "Loading Analysis..." key='loading_analysis'}}</p>
         {{else}}
           {{#if results.error}}
             <p>{{t "Error Loading Analysis" key='error_loading_analysis'}}</p>
           {{else}}
-            <h3>{{t "Total Boards:" key='total_boards'}} {{results.total_boards}}</h3>
-            <h3>{{t "Total Buttons:" key='total_buttons'}} {{results.total_buttons}}</h3>
+            <h3>{{t "Total Boards:" key='total_boards'}} {{results.total_boards}}
+              {{#if results.comp_boards}}<span style='font-size: 14px;'>vs. {{results.comp_boards}}</span>{{/if}}
+            </h3>
+            <h3>{{t "Total Buttons:" key='total_buttons'}} {{results.total_buttons}}
+              {{#if results.comp_buttons}}<span style='font-size: 14px;'>vs. {{results.comp_buttons}}</span>{{/if}}
+            </h3>
             <h3>{{t "Available Words/Phrases" key='all_buttons'}}</h3>
             {{#each level in levels}}
               <h4 style='margin-bottom: 0;'>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>
@@ -391,7 +395,7 @@
                 </p>
               </div>
             {{/each}}
-            <h3>{{t "Words Missing vs. Comparison Vocabulary" key='words_missing_compared_to_comp'}} ({{results.missing_words.length}})</h3>
+            <h3>{{t "Words Missing vs." key='words_missing_compared_to_comp'}} {{comp_name}} ({{results.missing_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.missing_words}}
@@ -399,7 +403,7 @@
                 {{/each}}
               </p>
             </div>
-            <h3>{{t "Extra Words not in Comparison Vocabulary" key='words_extra_compared_to_comp'}} ({{results.extra_words.length}})</h3>
+            <h3>{{t "Extra Words not in" key='words_extra_compared_to_comp'}} {{comp_name}} ({{results.extra_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.extra_words}}
@@ -407,7 +411,7 @@
                 {{/each}}
               </p>
             </div>
-            <h3>{{t "Words Shared with Comparison Vocabulary" key='words_shared_to_comp'}} ({{results.overlapping_words.length}})</h3>
+            <h3>{{t "Words Shared with" key='words_shared_to_comp'}} {{comp_name}} ({{results.overlapping_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.overlapping_words}}
@@ -454,10 +458,31 @@
               </tbody>
             </table>
             </div>
+            {{#if cores}}
+              <h3>{{t "Effort Averages" key='effort_averages'}}</h3>
+              <table class='table table-striped table-hover'>
+                <thead>
+                  <tr>
+                    <th>List</th>
+                    <th>Average Effort</th>
+                    <th>Comp Effort</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each core in cores}}
+                    <tr>
+                      <td>{{core.name}}</td>
+                      <td>{{core.average_effort}}</td>
+                      <td>{{core.comp_effort}}</td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            {{/if}}
 
             {{#if results.high_effort_words.length}}
               <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
-              <em>when compared to a collection of core word sets, these words are more difficult to access than the average</em>
+              <em style='display: block; margin-top: -10px; margin-bottom: 10px;'>when compared to a collection of core word sets, these words are more difficult to access than the average</em>
               <div style='max-height: 90px; overflow: auto;'>
                 <p>
                   {{#each button in results.high_effort_words}}
