@@ -450,16 +450,20 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
 
     var analyze = null;
     if(url) {
-      analyze = promise_ajax({
-        url: "/converter/obfset",
-        type: "POST",
-        data: {
-          url: url,
-          type: 'url'
-        }
-      }).then(function(data) {
-        return _this.watch_for_progress(data);
-      });
+      if(url.match(/^http/)) {
+        analyze = promise_ajax({
+          url: "/converter/obfset",
+          type: "POST",
+          data: {
+            url: url,
+            type: 'url'
+          }
+        }).then(function(data) {
+          return _this.watch_for_progress(data);
+        });  
+      } else {
+        analyze = Ember.RSVP.resolve(url);
+      }
     } else if(file) {
       var upload = _this.upload_file(file);
       var analyze = upload.then(function(data) {
