@@ -343,7 +343,7 @@
         <button class="btn btn-default" {{action "weighted_list" 'list'}}>{{t "View the Weighted Word List" key='weighted_list'}}</button>
       </p>
       <p>
-        {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted." key='vocab_explainer'}}
+        {{t "This vocabulary analysis will be available for up to a week after being uploaded. Vocabulary analysis allows you to review basic data on the configuration of a vocabulary set. You can compare it to one of the pre-processed vocabulary sets to get an idea of what words or phrases may benefit from being adjusted. Work rankings are based on how easy it is to access the word using an open algorithm called an <a href='https://docs.google.com/document/d/1ZJAt1JkpXcHgazEkWMFxxD_l117eD21p1uEFLMqjrjA/edit?usp=sharing' target='_blank'><b>\"AAC Effort Score\"</b> (feedback welcome!)</a>." key='vocab_explainer'}}
       </p>
       <p>
         {{t "The comparison vocabulary sets are presented strictly for purposes of public information, and are stored as a structured list of only words and phrases. Reference to any organization or commercial product does not constitute endorsement or participation by the commercial entities or copyright holders, and the information may be from outdated versions of material." key='name_disclaimer'}}
@@ -482,7 +482,7 @@
 
             {{#if results.high_effort_words.length}}
               <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
-              <em style='display: block; margin-top: -10px; margin-bottom: 10px;'>when compared to a collection of core word sets, these words are more difficult to access than the average</em>
+              <em style='display: block; margin-top: -10px; margin-bottom: 10px;'>when compared to a collection of core word sets, these words are more difficult to access in the current set than on the average</em>
               <div style='max-height: 90px; overflow: auto;'>
                 <p>
                   {{#each button in results.high_effort_words}}
