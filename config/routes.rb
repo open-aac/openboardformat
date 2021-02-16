@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ember_handler = 'docs#index'
   root ember_handler
   get '/docs' => ember_handler
+  get '/logs' => ember_handler
   get '/examples' => ember_handler
   get '/tools' => ember_handler
   get '/analyze' => ember_handler
