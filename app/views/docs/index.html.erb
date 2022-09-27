@@ -19,6 +19,7 @@
                 {{#link-to 'examples' tagName='li' href=false}}{{#link-to 'examples'}}{{t "Boards" key='boards'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'docs' tagName='li' href=false}}{{#link-to 'docs'}}{{t "Docs" key='docs'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'tools' tagName='li' href=false}}{{#link-to 'tools'}}{{t "Tools" key='tools'}}{{/link-to}}{{/link-to}}
+                {{#link-to 'analysis' tagName='li' href=false}}{{#link-to 'analysis'}}{{t "CARE Analysis" key='care_analysis'}}{{/link-to}}{{/link-to}}
                 {{#link-to 'partners' tagName='li' href=false}}{{#link-to 'partners'}}{{t "Partners" key='partners'}}{{/link-to}}{{/link-to}}
               </ul>
             </div>
@@ -507,6 +508,71 @@
 
 </script>
 
+<script type="text/x-handlebars" data-template-name="analysis">
+  <div class="row">
+    <div class="col-sm-12">
+      <img src='/care_report.svg' style='width: 100px; float: left; margin-right: 10px;' />
+      <h2>{{t "CARE Score Analysis" key='vocab_analysis'}}</h2>
+      <p>
+        {{t "The CARE analysis is a comparison tool for evaluating an AAC vocabulary based on industry standards and best practices. CARE stands for Core, Access, Repeatability and Effort. The CARE analysis can be used to compare an AAC vocabulary in its entirety to a number of common AAC vocabularies, as well as to standardized lists of expected core words. The CARE analysis also calculates an" key='analysis_intro'}}
+        <a href="https://docs.google.com/document/d/1ZJAt1JkpXcHgazEkWMFxxD_l117eD21p1uEFLMqjrjA/edit?usp=sharing" target="_blank">"{{t "AAC Effort Score" key='aac_effort_score'}}"</a>
+        {{t "to provide a standardized metric for how much effort it takes to reach each word or to generate whole sentences." key='analysis_intro2'}}
+      </p>
+      <p>
+        {{t "To run a CARE analysis, either upload an obf/obz file or enter the URL to a OBF-enabled online vocabulary (for example, in the CoughDrop AAC app). You can also select from a list of known vocabularies to see how they fare in the analysis. If providing a URL, make sure all boards in the vocabulary set are marked as public."}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+    <img src='/care_report.svg' style='width: 100px; float: left; margin-right: 10px;' />
+    <h3>{{t "CARE Analysis" key='vocab_analysis'}}</h3>
+      <p>{{t "You can compare your board set to popular vocabulary sets to learn more about the content and how it can be improved upon." key='vocab_analysis_explanation'}}</p>
+      <div style="margin-top: 10px;">
+        URL or file:
+        <div>
+          <div style='width: 70%; float: left;'>
+            {{input type="text" class='form-control' value=analyze_url id="analyze_url"}}
+          </div>
+          <div style='width: 30%; float: left;'>
+            <div class="btn-group" style='width: 100%;'>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='width: 100%;'>
+                Other <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#" {{action 'choose_vocab' 'l84f'}}>LAMP Words For Life 84</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc24'}}>Quick Core 24</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc60'}}>Quick Core 60</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc112'}}>Quick Core 112</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'sfy'}}>Speak For Yourself</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp108'}}>WordPower 108</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp80'}}>WordPower 80</a></li>
+              </ul>
+            </div>
+          </div>
+          <div style='clear: left;'>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 15x; margin-bottom: 25px;">
+    <div class="col-sm-4 col-sm-offset-4" style="text-align: center;">
+      <div style="margin-bottom: 10px;">
+        {{input type="file" value=analyze_file id="analyze_file"}}
+      </div>
+      <button class="btn btn-primary btn-lg" {{action "analyze_file"}} {{bind-attr disabled=bad_analyze_file}} style="width: 100%;">Analyze Vocabulary</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        {{t "Note: the analyzer is all available programmatically via the" key='obf_gem_pretext'}}
+        <a href="https://www.github.com/CoughDrop/obf">{{t "obf ruby gem library" key='obf_gem'}}</a>.
+      </p>
+    </div>
+  </div>
+</script>
+
 
 <script type="text/x-handlebars" data-template-name="tools">
   <div class="row">
@@ -544,7 +610,7 @@
             {{input type="text" class='form-control' value=analyze_url id="analyze_url"}}
           </div>
           <div style='width: 20%; float: left;'>
-            <div class="btn-group">
+            <div class="btn-group" style='width: 100%;'>
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='width: 100%;'>
                 -- <span class="caret"></span>
               </button>

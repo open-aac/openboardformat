@@ -63,6 +63,7 @@ OpenBoards.Router.map(function () {
   this.route('logs', { path: '/logs' });
   this.route('examples', { path: '/examples' });
   this.route('tools', { path: '/tools' });
+  this.route('analysis', { path: '/analysis' });
   this.route('analyze', { path: '/analyze' });
   this.route('share', { path: '/share' });
   this.route('partners', { path: '/partners' });
@@ -138,6 +139,20 @@ OpenBoards.ToolsController = Ember.Controller.extend({
     convert_file: function() {
       modal.open('loading-status', {type: 'convert'});
     }
+  }
+});
+
+OpenBoards.AnalysisController = Ember.Controller.extend({
+  bad_analyze_file: function() {
+    return !this.get('analyze_file') && !this.get('analyze_url');
+  }.property('analyze_file', 'analyze_url'),
+  actions: {
+    analyze_file: function() {
+      modal.open('loading-status', {type: 'analyze'});
+    },
+    choose_vocab: function(vocab) {
+      this.set('analyze_url', vocab);
+    },
   }
 });
 
