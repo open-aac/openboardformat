@@ -539,7 +539,28 @@
       <p>{{t "You can compare your board set to popular vocabulary sets to learn more about the content and how it can be improved upon." key='vocab_analysis_explanation'}}</p>
       <div style="margin-top: 10px;">
         URL or file:
-        {{input type="text" class='form-control' value=analyze_url id="analyze_url"}}
+        <div>
+          <div style='width: 80%; float: left;'>
+            {{input type="text" class='form-control' value=analyze_url id="analyze_url"}}
+          </div>
+          <div style='width: 20%; float: left;'>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='width: 100%;'>
+                -- <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#" {{action 'choose_vocab' 'l84f'}}>LAMP Words For Life 84</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc24'}}>Quick Core 24</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc60'}}>Quick Core 60</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc112'}}>Quick Core 112</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'sfy'}}>Speak For Yourself</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp108'}}>WordPower 108</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp80'}}>WordPower 80</a></li>
+              </ul>
+            </div>
+          </div>
+          <div style='clear: left;'>
+          </div>
       </div>
     </div>
   </div>

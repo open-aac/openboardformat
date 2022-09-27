@@ -126,6 +126,9 @@ OpenBoards.ToolsController = Ember.Controller.extend({
     validate_file: function() {
       modal.open('loading-status', {type: 'validate'});
     },
+    choose_vocab: function(vocab) {
+      this.set('analyze_url', vocab);
+    },
     analyze_file: function() {
       modal.open('loading-status', {type: 'analyze'});
     },
