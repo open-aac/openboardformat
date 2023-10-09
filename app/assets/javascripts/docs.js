@@ -347,9 +347,21 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         preview_url: "https://app.mycoughdrop.com/example/core-24?embed=1",
         pdf_url: "",
         size: 10,
-        author: "CoughDrop",
+        author: "OpenAAC",
         image_url: "/previews/quick-core-24.png",
         description: "Quick Core 24 is a core, motor-planning based vocabulary set with up to 24 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Quick Core 40",
+        url: "https://openboards.s3.amazonaws.com/examples/quick-core-40.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/example/core-40?embed=1",
+        pdf_url: "",
+        size: 35,
+        author: "OpenAAC",
+        image_url: "https://s3.amazonaws.com/opensymbols/libraries/extras/quick-core-40.svg",
+        description: "Quick Core 40 is a core, motor-planning based vocabulary set with up to 40 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
         name: "Quick Core 60",
@@ -357,10 +369,21 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         license: "CC-By",
         preview_url: "https://app.mycoughdrop.com/example/core-60?embed=1",
         pdf_url: "",
-        size: 10,
-        author: "CoughDrop",
+        size: 35,
+        author: "OpenAAC",
         image_url: "/previews/quick-core-60.png",
         description: "Quick Core 60 is a core, motor-planning based vocabulary set with up to 60 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Quick Core 84",
+        url: "https://openboards.s3.amazonaws.com/examples/quick-core-84.obz",
+        license: "CC-By",
+        preview_url: "https://app.mycoughdrop.com/example/core-84?embed=1",
+        pdf_url: "",
+        size: 70,
+        author: "OpenAAC",
+        image_url: "https://s3.amazonaws.com/opensymbols/libraries/extras/quick-core-84.svg",
+        description: "Quick Core 84 is a core, motor-planning based vocabulary set with up to 84 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
         name: "Quick Core 112",
@@ -368,11 +391,95 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         license: "CC-By",
         preview_url: "https://app.mycoughdrop.com/example/core-112?embed=1",
         pdf_url: "",
-        size: 10,
-        author: "CoughDrop",
+        size: 70,
+        author: "OpenAAC",
         image_url: "/previews/quick-core-112.png",
         description: "Quick Core 112 is a core, motor-planning based vocabulary set with up to 112 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
-      }
+      },
+      {
+        name: "Vocal Flair 24",
+        url: "https://openboards.s3.amazonaws.com/examples/vocal-flair-24.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/vocal-flair/vocal-flair-24?embed=1",
+        pdf_url: "",
+        size: 48,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-24.svg",
+        description: "Vocal Flair 24 is a core, flat-but-dynamic-styled vocabulary set with up to 24 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Vocal Flair 40",
+        url: "https://openboards.s3.amazonaws.com/examples/vocal-flair-40.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/vocal-flair/vocal-flair-40?embed=1",
+        pdf_url: "",
+        size: 46,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-40.svg",
+        description: "Vocal Flair 40 is a core, flat-but-dynamic-styled vocabulary set with up to 40 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Vocal Flair 60",
+        url: "https://openboards.s3.amazonaws.com/examples/vocal-flair-60.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/vocal-flair/vocal-flair-60?embed=1",
+        pdf_url: "",
+        size: 50,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-60.svg",
+        description: "Vocal Flair 60 is a core, flat-but-dynamic-styled vocabulary set with up to 60 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Vocal Flair 84",
+        url: "https://openboards.s3.amazonaws.com/examples/vocal-flair-84.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/vocal-flair/vocal-flair-84?embed=1",
+        pdf_url: "",
+        size: 57,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-84.svg",
+        description: "Vocal Flair 84 is a core, flat-but-dynamic-styled vocabulary set with up to 84 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Vocal Flair 84 - With Keyboard",
+        url: "https://openboards.s3.amazonaws.com/examples/vocal-flair-84-with-keyboard.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/vocal-flair/vocal-flair-84-with-keyboard?embed=1",
+        pdf_url: "",
+        size: 57,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-84.svg",
+        description: "Vocal Flair 84 is a core, flat-but-dynamic-styled vocabulary set with up to 84 buttons per board, including a keyboard on the main board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Vocal Flair 112",
+        url: "https://openboards.s3.amazonaws.com/examples/vocal-flair-112.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/vocal-flair/vocal-flair-112?embed=1",
+        pdf_url: "",
+        size: 57,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-112.svg",
+        description: "Vocal Flair 112 is a core, flat-but-dynamic-styled vocabulary set with up to 112 buttons per board, including a keyboard on the main board. It has built-in progression to gradually expand the vocabulary over time."
+      },
+      {
+        name: "Sequia 15",
+        url: "https://openboards.s3.amazonaws.com/examples/sequoia-15.obz",
+        license: "CC-By",
+        license_url: "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        preview_url: "https://app.mycoughdrop.com/sequoia/sequoia-15?embed=1",
+        pdf_url: "",
+        size: 37,
+        author: "OpenAAC",
+        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/sequoia-15.svg",
+        description: "Sequoia-15 is a branching vocabulary set, built in an effort to support communication organized by pragmatic function but with the goal of encouraging expansion into generalized and core-oriented vocabulary."
+      },
     ];
   }.property(),
   actions: {
