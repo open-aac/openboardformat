@@ -32,4 +32,4 @@ gem 'aac-metrics'
 # Use unicorn as the app server
 gem 'unicorn'
 
-ruby "2.6.6"
+ruby "2.5.3"
