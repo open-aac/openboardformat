@@ -280,6 +280,7 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
     if(this.get('results.comp_effort_score')) {
       res.comp_care_score = Math.round(this.get('results.comp_effort_score') * 100.0) / 100.0;
     }
+    return res;
   }.property('results.target_effort_score', 'results.comp_effort_score'),
   levels: function() {
     var levels = this.get('results.levels');
