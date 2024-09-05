@@ -401,15 +401,39 @@
           {{#if results.error}}
             <p>{{t "Error Loading Analysis" key='error_loading_analysis'}}</p>
           {{else}}
-            <h3>{{t "Total Boards:" key='total_boards'}} {{results.total_boards}}
-              {{#if results.comp_boards}}<span style='font-size: 14px;'>vs. {{results.comp_boards}}</span>{{/if}}
+            <h3>
+              <span class='target_result'>{{vocab_name}}</span>
+              vs.
+              <span class='comp_result'>{{comp_name}}</span>
             </h3>
-            <h3>{{t "Total Buttons:" key='total_buttons'}} {{results.total_buttons}}
-              {{#if results.comp_buttons}}<span style='font-size: 14px;'>vs. {{results.comp_buttons}}</span>{{/if}}
+
+            {{#if totals.care_score}}
+              <h3>{{t "Computed CARE Aggregate Effort Score" key='computed_care_score'}}</h3>
+              <table class='table table-striped table-hover'>
+                <thead>
+                  <tr>
+                    <th>CARE Score</th>
+                    <th>Comp CARE Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td style='font-size: 35px;' class='target_result'>{{totals.care_score}}</td>
+                      <td style='font-size: 25px;' class='comp_result'>{{totals.comp_care_score}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            {{/if}}
+
+            <h3>{{t "Total Boards:" key='total_boards'}} <span class='target_result'>{{results.total_boards}}</span>
+              {{#if results.comp_boards}}<span style='font-size: 14px;'>vs. <span class='comp_result'>{{results.comp_boards}}</span></span>{{/if}}
+            </h3>
+            <h3>{{t "Total Buttons:" key='total_buttons'}} <span class='target_result'>{{results.total_buttons}}</span>
+              {{#if results.comp_buttons}}<span style='font-size: 14px;'>vs. <span class='comp_result'>{{results.comp_buttons}}</span></span>{{/if}}
             </h3>
             <h3>{{t "Available Words/Phrases" key='all_buttons'}}</h3>
             {{#each level in levels}}
-              <h4 style='margin-bottom: 0;'>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>
+              <h4 style='margin-bottom: 0;' class='target_result'>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>
               <div style='max-height: 90px; overflow: auto; margin-bottom: 10px;'>
                 <p>
                   {{#each button in level.buttons}}
@@ -418,7 +442,7 @@
                 </p>
               </div>
             {{/each}}
-            <h3>{{t "Words Missing vs." key='words_missing_compared_to_comp'}} {{comp_name}} ({{results.missing_words.length}})</h3>
+            <h3 class='comp_result'>{{t "Words Missing vs." key='words_missing_compared_to_comp'}} {{comp_name}} ({{results.missing_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.missing_words}}
@@ -426,7 +450,7 @@
                 {{/each}}
               </p>
             </div>
-            <h3>{{t "Extra Words not in" key='words_extra_compared_to_comp'}} {{comp_name}} ({{results.extra_words.length}})</h3>
+            <h3 class='target_result'>{{t "Extra Words not in" key='words_extra_compared_to_comp'}} {{comp_name}} ({{results.extra_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.extra_words}}
@@ -434,7 +458,7 @@
                 {{/each}}
               </p>
             </div>
-            <h3>{{t "Words Shared with" key='words_shared_to_comp'}} {{comp_name}} ({{results.overlapping_words.length}})</h3>
+            <h3><span class='target_result'>{{t "Words Shared with" key='words_shared_to_comp'}}</span> <span class='comp_result'>{{comp_name}}</span> ({{results.overlapping_words.length}})</h3>
             <div style='max-height: 90px; overflow: auto;'>
               <p>
                 {{#each button in results.overlapping_words}}
@@ -471,11 +495,11 @@
                 {{#each button in all_buttons}}
                   <tr>
                     <td>{{button.label}}</td>
-                    <td>{{button.level}}</td>
-                    <td>{{button.effort}}</td>
+                    <td class='target_result'>{{button.level}}</td>
+                    <td class='target_result'>{{button.effort}}</td>
                     <td>{{#if button.comp_effort}}Y{{/if}}</td>
-                    <td>{{#if button.comp_effort}}{{button.comp_level}}{{/if}}</td>
-                    <td>{{#if button.comp_effort}}{{button.comp_effort}}{{/if}}</td>
+                    <td class='comp_result'>{{#if button.comp_effort}}{{button.comp_level}}{{/if}}</td>
+                    <td class='comp_result'>{{#if button.comp_effort}}{{button.comp_effort}}{{/if}}</td>
                   </tr>
                 {{/each}}
               </tbody>
@@ -506,8 +530,8 @@
                   {{#each core in cores}}
                     <tr>
                       <td>{{core.name}}</td>
-                      <td>{{core.average_effort}}</td>
-                      <td>{{core.comp_effort}}</td>
+                      <td class='target_result'>{{core.average_effort}}</td>
+                      <td class='comp_result'>{{core.comp_effort}}</td>
                     </tr>
                   {{/each}}
                 </tbody>
@@ -528,30 +552,13 @@
                 {{#each sentence in sentences}}
                   <tr>
                     <td>{{sentence.sentence}}</td>
-                    <td>{{sentence.average_effort}}</td>
-                    <td>{{sentence.comp_effort}}</td>
+                    <td class='target_result'>{{sentence.average_effort}}</td>
+                    <td class='comp_result'>{{sentence.comp_effort}}</td>
                   </tr>
                 {{/each}}
               </tbody>
             </table>
             </div>
-          {{/if}}
-          {{#if totals.care_score}}
-            <h3>{{t "Computed CARE Aggregate Effort Score" key='computed_care_score'}}</h3>
-            <table class='table table-striped table-hover'>
-              <thead>
-                <tr>
-                  <th>CARE Score</th>
-                  <th>Comp CARE Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                    <td style='font-size: 30px;'>{{totals.care_score}}</td>
-                    <td style='font-size: 25px;'>{{totals.comp_care_score}}</td>
-                  </tr>
-              </tbody>
-            </table>
           {{/if}}
 
           {{/if}}

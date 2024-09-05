@@ -257,7 +257,6 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       });
       return res;
     }
-
   }.property('results.buttons'),
   cores: function() {
     var cores = this.get('results.cores');
