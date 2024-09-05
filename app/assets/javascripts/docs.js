@@ -261,14 +261,14 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
     var sentences = this.get('results.sentences');
     if(sentences) {
       var res = [];
-      for(var key in sentences) {
+      sentences.forEach(function(sentence) {
         res.push({
-          sentence: sentences[key].name,
-          list: sentences[key].list,
-          average_effort: Math.round(sentences[key].average_effort * 100.0) / 100.0,
-          comp_effort: Math.round(sentences[key].comp_effort * 100.0) / 100.0
+          sentence: sentence.sentence,
+          list: sentence.list,
+          average_effort: Math.round(sentence.effort * 100.0) / 100.0,
+          comp_effort: Math.round(sentence.comp_effort * 100.0) / 100.0
         });
-      }
+      });
       return res;
     }
   }.property('results.sentences'),
