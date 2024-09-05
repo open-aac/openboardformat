@@ -468,7 +468,7 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each button in results.buttons}}
+                {{#each button in all_buttons}}
                   <tr>
                     <td>{{button.label}}</td>
                     <td>{{button.level}}</td>
@@ -515,6 +515,7 @@
             {{/if}}
             {{#if sentences}}
             <h3>{{t "Sentence Effort Averages" key='sentence_effort_averages'}}</h3>
+            <div style='max-height: 315px; overflow: auto;'>
             <table class='table table-striped table-hover'>
               <thead>
                 <tr>
@@ -533,9 +534,10 @@
                 {{/each}}
               </tbody>
             </table>
+            </div>
           {{/if}}
           {{#if totals.care_score}}
-            <h3>{{t "Computed CARE Score" key='computed_care_score'}}</h3>
+            <h3>{{t "Computed CARE Aggregate Effort Score" key='computed_care_score'}}</h3>
             <table class='table table-striped table-hover'>
               <thead>
                 <tr>
@@ -545,8 +547,8 @@
               </thead>
               <tbody>
                   <tr>
-                    <td>{{totals.care_score}}</td>
-                    <td>{{totals.comp_care_score}}</td>
+                    <td style='font-size: 30px;'>{{totals.care_score}}</td>
+                    <td style='font-size: 25px;'>{{totals.comp_care_score}}</td>
                   </tr>
               </tbody>
             </table>

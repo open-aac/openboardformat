@@ -242,6 +242,23 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       return res;
     }
   }.property('results.missing'),
+  all_buttons: function() {
+    var buttons = this.get('results.buttons');
+    if(buttons) {
+      var res = [];
+      buttons.forEach(function(button) {
+        res.push({
+          label: button.label,
+          level: button.level,
+          effort: Math.round(button.effort * 100.0) / 100.0,
+          comp_level: button.comp_level,
+          comp_effort: button.comp_effort ? (Math.round(button.comp_effort * 100.0) / 100.0) : null
+        });
+      });
+      return res;
+    }
+
+  }.property('results.buttons'),
   cores: function() {
     var cores = this.get('results.cores');
     if(cores) {
