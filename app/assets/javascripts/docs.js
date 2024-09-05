@@ -257,6 +257,30 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       return res;
     }
   }.property('results.cores'),
+  sentences: function() {
+    var sentences = this.get('results.sentences');
+    if(sentences) {
+      var res = [];
+      for(var key in sentences) {
+        res.push({
+          sentence: sentences[key].name,
+          list: sentences[key].list,
+          average_effort: Math.round(sentences[key].average_effort * 100.0) / 100.0,
+          comp_effort: Math.round(sentences[key].comp_effort * 100.0) / 100.0
+        });
+      }
+      return res;
+    }
+  }.property('results.sentences'),
+  totals: function() {
+    var res = {};
+    if(this.get('results.target_effort_score')) {
+      res.care_score = Math.round(this.get('results.target_effort_score') * 100.0) / 100.0;
+    }
+    if(this.get('results.comp_effort_score')) {
+      res.comp_care_score = Math.round(this.get('results.comp_effort_score') * 100.0) / 100.0;
+    }
+  }.property('results.target_effort_score', 'results.comp_effort_score'),
   levels: function() {
     var levels = this.get('results.levels');
     if(levels) {

@@ -481,6 +481,17 @@
               </tbody>
             </table>
             </div>
+            {{#if results.high_effort_words.length}}
+              <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
+              <em style='display: block; margin-top: -10px; margin-bottom: 10px;'>when compared to a collection of core word sets, these words are more difficult to access in the current set than on the average</em>
+              <div style='max-height: 90px; overflow: auto;'>
+                <p>
+                  {{#each button in results.high_effort_words}}
+                    {{button}}&nbsp;&nbsp;
+                  {{/each}}
+                </p>
+              </div>
+            {{/if}}
             {{#if cores}}
               <h3>{{t "Effort Averages" key='effort_averages'}}</h3>
               <table class='table table-striped table-hover'>
@@ -502,18 +513,45 @@
                 </tbody>
               </table>
             {{/if}}
+            {{#if sentences}}
+            <h3>{{t "Sentence Effort Averages" key='sentence_effort_averages'}}</h3>
+            <table class='table table-striped table-hover'>
+              <thead>
+                <tr>
+                  <th>Sentence</th>
+                  <th>Average Effort</th>
+                  <th>Comp Effort</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sentence in sentences}}
+                  <tr>
+                    <td>{{sentence.sentence}}</td>
+                    <td>{{sentence.average_effort}}</td>
+                    <td>{{sentence.comp_effort}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          {{/if}}
+          {{#if totals.care_score}}
+            <h3>{{t "Computed CARE Score" key='computed_care_score'}}</h3>
+            <table class='table table-striped table-hover'>
+              <thead>
+                <tr>
+                  <th>CARE Score</th>
+                  <th>Comp CARE Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>{{totals.care_score}}</td>
+                    <td>{{totals.comp_care_score}}</td>
+                  </tr>
+              </tbody>
+            </table>
+          {{/if}}
 
-            {{#if results.high_effort_words.length}}
-              <h3>{{t "Words to Consider Making Easier to Access" key='high_effort_words'}} ({{results.high_effort_words.length}})</h3>
-              <em style='display: block; margin-top: -10px; margin-bottom: 10px;'>when compared to a collection of core word sets, these words are more difficult to access in the current set than on the average</em>
-              <div style='max-height: 90px; overflow: auto;'>
-                <p>
-                  {{#each button in results.high_effort_words}}
-                    {{button}}&nbsp;&nbsp;
-                  {{/each}}
-                </p>
-              </div>
-            {{/if}}
           {{/if}}
         {{/if}}
       </div>
