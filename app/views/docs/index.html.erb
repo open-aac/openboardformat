@@ -427,29 +427,34 @@
 
             <h3>{{t "Total Boards:" key='total_boards'}} <span class='target_result'>{{results.total_boards}}</span>
               {{#if results.comp_boards}}<span style='font-size: 14px;'>vs. <span class='comp_result'>{{results.comp_boards}}</span></span>{{/if}}
-              {{#if results.grid.rows}}
-                <table style='width: 400px; max-width: 55%'>
-                  {{#each row in grid}}
-                    <tr>
-                      {{#each col in row}}
-                        <td style='border: 1px solid #aaa; border-radius: 3px; background: #fafafa;'>&nbsp;</td>
-                      {{/each}}
-                    </tr>
-                  {{/each}}
-                </table>
-              {{/if}}
-              {{#if results.comp_grid.rows}}
-                <table style='width: 300px; max-width: 35%'>
-                  {{#each row in grid}}
-                    <tr>
-                      {{#each col in row}}
-                        <td style='border: 1px solid #ccc; border-radius: 3px; background: #fefefe;'>&nbsp;</td>
-                      {{/each}}
-                    </tr>
-                  {{/each}}
-                </table>
-              {{/if}}
             </h3>
+            {{#if results.grid.rows}}
+              <table style='float: left; width: 400px; height: 275px; max-width: 55%; border: 1px solid #1679a9; background: #81b7d1; border-radius: 2px;'>
+                {{#each row in grid}}
+                  <tr>
+                    {{#each col in row}}
+                      <td style='padding: 2px;'>
+                        <div style='width: 100%; height: 100%; border: 1px solid #1679a9; border-radius: 3px; background: #fafafa;'>&nbsp;</div>
+                      </td>
+                    {{/each}}
+                  </tr>
+                {{/each}}
+              </div>
+            {{/if}}
+            {{#if results.comp_grid.rows}}
+              <table style='float: left; width: 400px; margin-left: 20px; height: 275px; max-width: 35%;  border: 1px solid #858f23; background: #b8c06f; border-radius: 2px;'>
+                {{#each row in comp_grid}}
+                  <tr>
+                    {{#each col in row}}
+                      <td style='padding: 2px;'>
+                        <div style='width: 100%; height: 100%; border: 1px solid #858f23; border-radius: 3px; background: #fefefe;'>&nbsp;</div>
+                      </td>
+                    {{/each}}
+                  </tr>
+                {{/each}}
+              </table>
+            {{/if}}
+            <div style='clear: left;'></div>
             <h3>{{t "Total Buttons:" key='total_buttons'}} <span class='target_result'>{{results.total_buttons}}</span>
               {{#if results.comp_buttons}}<span style='font-size: 14px;'>vs. <span class='comp_result'>{{results.comp_buttons}}</span></span>{{/if}}
             </h3>

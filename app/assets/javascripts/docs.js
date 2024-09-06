@@ -290,26 +290,26 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
   }.property('results.sentences'),
   grid: function() {
     var res = [];
-    for(var idx = 0; idx < this.get('grid.rows'); idx++) {
+    for(var idx = 0; idx < this.get('results.grid.rows'); idx++) {
       var row = [];
-      for(var jdx = 0; jdx < this.get('grid.columns'); jdx++) {
+      for(var jdx = 0; jdx < this.get('results.grid.columns'); jdx++) {
         row.push(1);
       }
       res.push(row);
     }
     return res;
-  }.property('grid.rows', 'grid.columns'),
+  }.property('results.grid.rows', 'results.grid.columns'),
   comp_grid: function() {
     var res = [];
-    for(var idx = 0; idx < this.get('comp_grid.rows'); idx++) {
+    for(var idx = 0; idx < this.get('results.comp_grid.rows'); idx++) {
       var row = [];
-      for(var jdx = 0; jdx < this.get('comp_grid.columns'); jdx++) {
+      for(var jdx = 0; jdx < this.get('results.comp_grid.columns'); jdx++) {
         row.push(1);
       }
       res.push(row);
     }
     return res;
-  }.property('comp_grid.rows', 'comp_grid.columns'),
+  }.property('results.comp_grid.rows', 'results.comp_grid.columns'),
   totals: function() {
     var res = {};
     if(this.get('results.target_effort_score')) {
