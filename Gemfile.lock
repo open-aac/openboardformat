@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (3.0.3)
-    aac-metrics (0.1.2)
+    aac-metrics (0.1.5)
       json
       typhoeus
     actioncable (5.0.7.2)
@@ -53,7 +53,7 @@ GEM
     ethon (0.16.0)
       ffi (>= 1.15.0)
     execjs (2.7.0)
-    ffi (1.15.0)
+    ffi (1.17.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     heroku-deflater (0.6.3)

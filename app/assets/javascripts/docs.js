@@ -288,6 +288,28 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       return res;
     }
   }.property('results.sentences'),
+  grid: function() {
+    var res = [];
+    for(var idx = 0; idx < this.get('grid.rows'); idx++) {
+      var row = [];
+      for(var jdx = 0; jdx < this.get('grid.columns'); jdx++) {
+        row.push(1);
+      }
+      res.push(row);
+    }
+    return res;
+  }.property('grid.rows', 'grid.columns'),
+  comp_grid: function() {
+    var res = [];
+    for(var idx = 0; idx < this.get('comp_grid.rows'); idx++) {
+      var row = [];
+      for(var jdx = 0; jdx < this.get('comp_grid.columns'); jdx++) {
+        row.push(1);
+      }
+      res.push(row);
+    }
+    return res;
+  }.property('comp_grid.rows', 'comp_grid.columns'),
   totals: function() {
     var res = {};
     if(this.get('results.target_effort_score')) {
