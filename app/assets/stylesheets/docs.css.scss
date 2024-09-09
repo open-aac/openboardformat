@@ -119,3 +119,49 @@
 .comp_result {
   color: #858f23;
 }
+#obfset_holder {
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border: 1px solid #1679a9;
+    background: #81b7d1
+  }
+  td > div {
+    border: 1px solid #1679a9;
+    border-radius: 3px;
+    margin: 1px;
+    min-height: 40px;
+    padding-top: 20px;
+    cursor: pointer;
+    text-align: center;
+    height: 100%;
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+    &.link {
+      position: relative;
+      :after {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #9bcfe9;
+        border-radius: 12px;
+      }
+    }
+    .effort_label {
+      white-space: nowrap;
+    }
+    .effort {
+      color: #888;
+      font-size: 12px;
+      font-style: italic;
+    }
+  }
+  td > div:hover {
+    background: #f2f2f2;
+  }
+}

@@ -70,8 +70,14 @@ OpenBoards.Router.map(function () {
 });
 
 OpenBoards.ApplicationRoute = Ember.Route.extend({
-  setupController: function(controller, model) {
+  setupController: function(obj) {
     modal.setup(this);
+    setTimeout(function() {
+      var contr = obj.controllerFor(obj.currentRouteName);
+      if(contr && contr.check) {
+        contr.check();
+      }
+    }, 100);
   }
 });
 
@@ -177,6 +183,20 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
     });
     return hash.url;
   },
+  comp_url: function() {
+    var parts = location.search.replace(/^\?/, '').split(/\&/);
+    var hash = {};
+    parts.forEach(function(str) {
+      var pieces = str.split(/\=/);
+      hash[decodeURIComponent(pieces[0])]  = decodeURIComponent(pieces[1]);
+    });
+    return hash.comp;
+  },
+  check: function() {
+    if(this.list_url() && this.comp_url()) {
+      this.process(this.comp_url());
+    }
+  },
   known_names: function() {
     return {
       "l84f":"LAMP Words For Life 84",
@@ -227,6 +247,7 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       analyze.then(function(data) {
         console.log("ANALYIS COMPLETE", data);
         _this.set('results', data);
+        OpenBoards.ObfSet.init(data.obfset);
       }, function(err) {
         _this.set('results', {error: true});
       });  
@@ -338,6 +359,7 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
   actions: {
     analyze: function() {
       var comp = $("#comp").val();
+      history.replaceState({}, null, "?url=" + this.list_url() + "&comp=" + encodeURIComponent(comp));
       this.process(comp);
     },
     raw_list: function(type) {
@@ -805,3 +827,98 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
     }
   }
 });
+(function() {
+  var obfset = null;
+  var current_board = null;
+  OpenBoards.ObfSet = {};
+  OpenBoards.ObfSet.init = function(ref) {
+    obfset = ref;
+    if(ref && ref[0]) {
+      current_board = ref[0];
+    }
+    OpenBoards.ObfSet.render();
+  };
+  OpenBoards.ObfSet.render = function(attempts) {
+    // wait for a dom element to exist, then render
+    attempts = attempts || 0;
+    if(attempts > 5) { return; }
+    var holder = document.querySelector('#obfset_holder')
+    if(!holder) {
+      setTimeout(function() {
+        OpenBoards.ObfSet.render(attempts + 1);
+      }, 300);
+      return;
+    }
+    if(obfset) {
+      if(current_board) {
+        current_board.grid.rows
+        current_board.grid.columns
+        var grid = document.createElement('table');
+        for(var idx = 0; idx < current_board.grid.rows; idx++) {
+          var row = document.createElement('tr');
+          for(var jdx = 0; jdx < current_board.grid.columns; jdx++) {
+            (function(idx, jdx) {
+              var button = current_board.buttons.find(function(b) { return b.id == (current_board.grid.order[idx] || [])[jdx]});
+              var td = document.createElement('td');
+              var cell = document.createElement('div');
+              button = button || {};
+
+                var label = document.createElement('div');
+                label.classList.add('effort_label');
+                if(button.load_board) {
+                  cell.classList.add('link');
+                }
+                if(button.label) {
+                  label.innerText = button.label;
+                } else {
+                  label.innerHTML = "&nbsp;";
+                }
+                cell.appendChild(label);
+
+                var effort = document.createElement('div');
+                effort.classList.add('effort');
+                if(button.effort && !button.load_board) {
+                  effort.innerText = Math.round(button.effort * 100.0) / 100.0;
+                } else {
+                  effort.innerHTML = "&nbsp;";
+                }
+                cell.appendChild(effort);
+
+                cell.style.minHeight = '30px';
+                cell.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  if(button.load_board) {
+                    OpenBoards.ObfSet.jump(button.load_board.id);
+                  } else {
+                    OpenBoards.ObfSet.jump('home');
+                  }
+                });
+
+              td.appendChild(cell);
+              row.appendChild(td);  
+            })(idx, jdx);
+          }
+          grid.appendChild(row);
+        }
+        holder.innerHTML = "";
+        var width = Math.min(holder.getBoundingClientRect().width, 800);
+        grid.style.width = width + 'px';
+        grid.style.height = Math.round(width * 0.65) + 'px';
+        holder.appendChild(grid);
+      } else {
+        // board not found when expected
+      }
+    } else {
+      // nothing to show
+    }
+
+  };
+  OpenBoards.ObfSet.jump = function(id) {
+    if(id == 'home' && obfset && obfset[0]) {
+      id = obfset[0].id;
+    }
+    var board = (obfset || []).find(function(b) { return b.id == id; });
+    current_board = board;
+    OpenBoards.ObfSet.render();
+  };
+})();

@@ -429,7 +429,7 @@
               {{#if results.comp_boards}}<span style='font-size: 14px;'>vs. <span class='comp_result'>{{results.comp_boards}}</span></span>{{/if}}
             </h3>
             {{#if results.grid.rows}}
-              <table style='float: left; width: 400px; height: 275px; max-width: 55%; border: 1px solid #1679a9; background: #81b7d1; border-radius: 2px;'>
+              <table style='float: left; width: 400px; height: 300px; max-width: 55%; border: 1px solid #1679a9; background: #81b7d1; border-radius: 2px;'>
                 {{#each row in grid}}
                   <tr>
                     {{#each col in row}}
@@ -442,7 +442,7 @@
               </div>
             {{/if}}
             {{#if results.comp_grid.rows}}
-              <table style='float: left; width: 400px; margin-left: 20px; height: 275px; max-width: 35%;  border: 1px solid #858f23; background: #b8c06f; border-radius: 2px;'>
+              <table style='float: left; width: 400px; margin-left: 20px; height: 300px; max-width: 35%;  border: 1px solid #858f23; background: #b8c06f; border-radius: 2px;'>
                 {{#each row in comp_grid}}
                   <tr>
                     {{#each col in row}}
@@ -458,6 +458,7 @@
             <h3>{{t "Total Buttons:" key='total_buttons'}} <span class='target_result'>{{results.total_buttons}}</span>
               {{#if results.comp_buttons}}<span style='font-size: 14px;'>vs. <span class='comp_result'>{{results.comp_buttons}}</span></span>{{/if}}
             </h3>
+            <div id='obfset_holder'></div>
             <h3>{{t "Available Words/Phrases" key='all_buttons'}}</h3>
             {{#each level in levels}}
               <h4 style='margin-bottom: 0;' class='target_result'>Buttons Accessible in {{level.level}} Hit{{#if level.plural}}s{{/if}} ({{level.buttons.length}})</h4>

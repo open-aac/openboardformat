@@ -19,7 +19,7 @@ class ConversionsController < ApplicationController
   end
 
   def obfset
-    p = Progress.schedule(Converter, :generate_analysis, params['url'], params['type'])
+    p = Progress.schedule(Converter, :generate_obfset, params['url'], params['type'])
     render json: p.status
   end
 

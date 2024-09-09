@@ -36,10 +36,11 @@ module Converter
   def self.analyze_obfset(url, comp)
     obfset = AACMetrics::Loader.retrieve(url)
     compset = AACMetrics::Loader.retrieve(comp)
-    AACMetrics::Metrics.analyze_and_compare(obfset, compset)
+    AACMetrics::Metrics.analyze_and_compare(obfset, compset, true)
   end
 
-  def self.generate_analysis(url, type)
+  def self.generate_obfset(url, type)
+    # Generates a file for analysis
     if !url || !type
       raise "missing parameter"
     end
