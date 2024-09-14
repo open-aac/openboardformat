@@ -917,6 +917,7 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
     if(id == 'home' && obfset && obfset[0]) {
       id = obfset[0].id;
     }
+    console.log("PREVIEW OBF JUMP:", id);
     var board = (obfset || []).find(function(b) { return b.id == id; });
     current_board = board;
     OpenBoards.ObfSet.render();
