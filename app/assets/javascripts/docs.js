@@ -875,6 +875,13 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
                 }
                 cell.appendChild(label);
 
+                if(button.clone_id) {
+                  cell.classList.add('clone');
+                }
+                if(button.semantic_id) {
+                  cell.classList.add('semantic');
+                }
+
                 var effort = document.createElement('div');
                 effort.classList.add('effort');
                 if(button.effort && !button.load_board) {

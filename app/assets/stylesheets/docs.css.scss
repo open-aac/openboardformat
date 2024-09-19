@@ -152,6 +152,12 @@
         border-radius: 12px;
       }
     }
+    &.semantic {
+      background: #f2e6f7;
+    }
+    &.clone {
+      background: #ffffdf;
+    }
     .effort_label {
       white-space: nowrap;
     }
