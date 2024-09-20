@@ -433,7 +433,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 10,
         author: "OpenAAC",
-        image_url: "/previews/quick-core-24.png",
+        image_url: "https://www.openaac.org/images/2024/quick-core-24.png",
         description: "Quick Core 24 is a core, motor-planning based vocabulary set with up to 24 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -445,7 +445,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 35,
         author: "OpenAAC",
-        image_url: "https://s3.amazonaws.com/opensymbols/libraries/extras/quick-core-40.svg",
+        image_url: "https://www.openaac.org/images/2024/quick-core-40.png",
         description: "Quick Core 40 is a core, motor-planning based vocabulary set with up to 40 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -456,7 +456,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 35,
         author: "OpenAAC",
-        image_url: "/previews/quick-core-60.png",
+        image_url: "https://www.openaac.org/images/2024/quick-core-60.png",
         description: "Quick Core 60 is a core, motor-planning based vocabulary set with up to 60 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -467,7 +467,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 70,
         author: "OpenAAC",
-        image_url: "https://s3.amazonaws.com/opensymbols/libraries/extras/quick-core-84.svg",
+        image_url: "https://www.openaac.org/images/2024/quick-core-84.png",
         description: "Quick Core 84 is a core, motor-planning based vocabulary set with up to 84 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -478,7 +478,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 70,
         author: "OpenAAC",
-        image_url: "/previews/quick-core-112.png",
+        image_url: "https://www.openaac.org/images/2024/quick-core-112.png",
         description: "Quick Core 112 is a core, motor-planning based vocabulary set with up to 112 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -490,7 +490,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 48,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-24.svg",
+        image_url: "https://www.openaac.org/images/2024/vocal-flair-24.png",
         description: "Vocal Flair 24 is a core, flat-but-dynamic-styled vocabulary set with up to 24 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -502,7 +502,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 46,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-40.svg",
+        image_url: "https://www.openaac.org/images/2024/vocal-flair-40.png",
         description: "Vocal Flair 40 is a core, flat-but-dynamic-styled vocabulary set with up to 40 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -514,7 +514,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 50,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-60.svg",
+        image_url: "https://www.openaac.org/images/2024/vocal-flair-60.png",
         description: "Vocal Flair 60 is a core, flat-but-dynamic-styled vocabulary set with up to 60 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -526,7 +526,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 57,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-84.svg",
+        image_url: "https://www.openaac.org/images/2024/vocal-flair-84.png",
         description: "Vocal Flair 84 is a core, flat-but-dynamic-styled vocabulary set with up to 84 buttons per board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -538,7 +538,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 57,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-84.svg",
+        image_url: "https://www.openaac.org/images/2024/vocal-flair-84.png",
         description: "Vocal Flair 84 is a core, flat-but-dynamic-styled vocabulary set with up to 84 buttons per board, including a keyboard on the main board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -550,7 +550,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 57,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/vocal-flair-112.svg",
+        image_url: "https://www.openaac.org/images/2024/vocal-flair-112.png",
         description: "Vocal Flair 112 is a core, flat-but-dynamic-styled vocabulary set with up to 112 buttons per board, including a keyboard on the main board. It has built-in progression to gradually expand the vocabulary over time."
       },
       {
@@ -562,7 +562,7 @@ OpenBoards.ExamplesController = Ember.Controller.extend({
         pdf_url: "",
         size: 37,
         author: "OpenAAC",
-        image_url: "https://opensymbols.s3.amazonaws.com/libraries/extras/sequoia-15.svg",
+        image_url: "https://www.openaac.org/images/2024/sequoia-15.png",
         description: "Sequoia-15 is a branching vocabulary set, built in an effort to support communication organized by pragmatic function but with the goal of encouraging expansion into generalized and core-oriented vocabulary."
       },
     ];
