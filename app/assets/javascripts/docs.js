@@ -200,12 +200,23 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
   known_names: function() {
     return {
       "l84f":"LAMP Words For Life 84",
+      "pc36":"Project Core (36)",
       "qc24":"Quick Core 24",
+      "qc40":"Quick Core 40",
       "qc60":"Quick Core 60",
+      "qc84":"Quick Core 84",
       "qc112":"Quick Core 112",
       "sfy":"Speak For Yourself",
+      "vf24":"Vocal Flair 24",
+      "vf40":"Vocal Flair 40",
+      "vf60":"Vocal Flair 60",
+      "vf84":"Vocal Flair 24",
+      "vf112":"Vocal Flair 112",
       "wp108":"WordPower 108",
       "wp80":"WordPower 80",
+      "wp60":"WordPower 80",
+      "wp42":"WordPower 80",
+      "wp20":"WordPower 80",
     };
   },
   vocab_name: function() {
@@ -309,6 +320,15 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       return res;
     }
   }.property('results.sentences'),
+  care_components: function() {
+    var res = this.get('results.care_components');
+    if(res) {
+      for(var key in res) {
+        res[key] = Math.round(res[key] * 100.0) / 100.0;
+      }
+    }
+    return res;
+  }.property('results.care_components'),
   grid: function() {
     var res = [];
     for(var idx = 0; idx < this.get('results.grid.rows'); idx++) {
@@ -884,7 +904,7 @@ OpenBoards.LoadingStatusController = Ember.ModalController.extend({
 
                 var effort = document.createElement('div');
                 effort.classList.add('effort');
-                if(button.effort && !button.load_board) {
+                if(button.effort && (!button.load_board || button.load_board.add_to_sentence)) {
                   effort.innerText = Math.round(button.effort * 100.0) / 100.0;
                 } else {
                   effort.innerHTML = "&nbsp;";

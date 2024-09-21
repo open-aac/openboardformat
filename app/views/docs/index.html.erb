@@ -332,7 +332,7 @@
         </tbody>
       </table>
       <p>
-        {{t "If your vendor isn't listed, please contact them and encourage them to adopt open standards like the Open Board Format to better support their users. If you're a vendor and want to get involved, <a href='https://www.twitter.com/CoughDropAAC'>just let us know!</a>" key='partners_2'}}
+        {{t "If your vendor isn't listed, please contact them and encourage them to adopt open standards like the Open Board Format to better support their users. If you're a vendor and want to get involved, <a href='https://www.twitter.com/open_aac'>just let us know!</a>" key='partners_2'}}
       </p>
     </div>
   </div>
@@ -380,11 +380,21 @@
         <option value="none">[ Choose a Vocabulary ]</option>
         <option value="l84f">LAMP Words For Life 84</option>
         <option value="qc24">Quick Core 24</option>
+        <option value="qc40">Quick Core 40</option>
         <option value="qc60">Quick Core 60</option>
+        <option value="qc84">Quick Core 84</option>
         <option value="qc112">Quick Core 112</option>
         <option value="sfy">Speak For Yourself</option>
+        <option value="vf24">Vocal Flair 24</option>
+        <option value="vf40">Vocal Flair 40</option>
+        <option value="vf60">Vocal Flair 60</option>
+        <option value="vf84">Vocal Flair 84</option>
+        <option value="vf112">Vocal Flair 112</option>
         <option value="wp108">WordPower 108</option>
         <option value="wp80">WordPower 80</option>
+        <option value="wp60">WordPower 60</option>
+        <option value="wp42">WordPower 42</option>
+        <option value="wp20">WordPower 20 Simply</option>
       </select>
       <button class="btn btn-primary" {{action "analyze"}}>{{t "Run Analysis" key='run_analysis'}}</button>
       <button class="btn btn-default" {{action "raw_list" 'comp'}}>{{t "View the Comp Word List" key='raw_comp_list'}}</button>
@@ -408,11 +418,11 @@
             </h3>
 
             {{#if totals.care_score}}
-              <h3>{{t "CARE Aggregate Effort Score" key='computed_care_score'}}</h3>
+              <h3>{{t "CARE Efficiency Score" key='computed_care_score'}}</h3>
               <table class='table table-striped table-hover'>
                 <thead>
                   <tr>
-                    <th>CARE Score</th>
+                    <th>CARE Score (higher is better)</th>
                     <th>Comp CARE Score</th>
                   </tr>
                 </thead>
@@ -566,26 +576,60 @@
               </table>
             {{/if}}
             {{#if sentences}}
-            <h3>{{t "Sentence Effort Averages" key='sentence_effort_averages'}}</h3>
+              <h3>{{t "Sentence Effort Averages" key='sentence_effort_averages'}}</h3>
+              <div style='max-height: 315px; overflow: auto;'>
+              <table class='table table-striped table-hover'>
+                <thead>
+                  <tr>
+                    <th>Sentence</th>
+                    <th>Average Effort</th>
+                    <th>Comp Effort</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each sentence in sentences}}
+                    <tr>
+                      <td>{{sentence.sentence}}</td>
+                      <td class='target_result'>{{sentence.average_effort}}</td>
+                      <td class='comp_result'>{{sentence.comp_effort}}</td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              </div>
+            {{/if}}
+            {{#if care_components}}
+            <h3>{{t "CARE Score Breakdown" key='care_score_breakdown'}}</h3>
             <div style='max-height: 315px; overflow: auto;'>
             <table class='table table-striped table-hover'>
               <thead>
                 <tr>
-                  <th>Sentence</th>
-                  <th>Average Effort</th>
+                  <th>Category</th>
+                  <th>Effort Value (lower is better)</th>
                   <th>Comp Effort</th>
                 </tr>
               </thead>
               <tbody>
-                {{#each sentence in sentences}}
-                  <tr>
-                    <td>{{sentence.sentence}}</td>
-                    <td class='target_result'>{{sentence.average_effort}}</td>
-                    <td class='comp_result'>{{sentence.comp_effort}}</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
+                <tr>
+                  <td>Core Words Average Effort</td>
+                  <td class='target_result'>{{care_components.core}}</td>
+                  <td class='comp_result'>{{care_components.comp_core}}</td>
+                </tr>
+                <tr>
+                  <td>Test Sentences Average Effort</td>
+                  <td class='target_result'>{{care_components.sentences}}</td>
+                  <td class='comp_result'>{{care_components.comp_sentences}}</td>
+                </tr>
+                <tr>
+                  <td>Fringe Words Average Effort</td>
+                  <td class='target_result'>{{care_components.fringe}}</td>
+                  <td class='comp_result'>{{care_components.comp_fringe}}</td>
+                </tr>
+                <tr>
+                  <td>High-Use Fringe Words Average Effort</td>
+                  <td class='target_result'>{{care_components.common_fringe}}</td>
+                  <td class='comp_result'>{{care_components.comp_common_fringe}}</td>
+                </tr>
             </div>
           {{/if}}
 
@@ -639,11 +683,21 @@
               <ul class="dropdown-menu">
                 <li><a href="#" {{action 'choose_vocab' 'l84f'}}>LAMP Words For Life 84</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'qc24'}}>Quick Core 24</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc40'}}>Quick Core 40</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'qc60'}}>Quick Core 60</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'qc84'}}>Quick Core 84</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'qc112'}}>Quick Core 112</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'sfy'}}>Speak For Yourself</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'vf24'}}>Vocal Flair 24</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'vf40'}}>Vocal Flair 40</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'vf60'}}>Vocal Flair 60</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'vf84'}}>Vocal Flair 84</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'vf112'}}>Vocal Flair 112</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'wp108'}}>WordPower 108</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'wp80'}}>WordPower 80</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp60'}}>WordPower 60</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp42'}}>WordPower 42</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'wp20'}}>WordPower 20 Simply</a></li>
               </ul>
             </div>
           </div>
@@ -664,7 +718,7 @@
     <div class="col-sm-12">
       <p>
         {{t "Note: the analyzer is all available programmatically via the" key='obf_gem_pretext'}}
-        <a href="https://www.github.com/CoughDrop/obf">{{t "obf ruby gem library" key='obf_gem'}}</a>.
+        <a href="https://github.com/open-aac/obf">{{t "obf ruby gem library" key='obf_gem'}}</a>.
       </p>
     </div>
   </div>
@@ -757,7 +811,7 @@
     <div class="col-sm-12">
       <p>
         {{t "Note: the validator, converter, and pdf generator are all available programmatically via the" key='obf_gem_pretext'}}
-        <a href="https://www.github.com/CoughDrop/obf">{{t "obf ruby gem library" key='obf_gem'}}</a>.
+        <a href="https://github.com/open-aac/obf">{{t "obf ruby gem library" key='obf_gem'}}</a>.
       </p>
     </div>
     <div class="col-sm-3">
