@@ -214,9 +214,9 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       "vf112":"Vocal Flair 112",
       "wp108":"WordPower 108",
       "wp80":"WordPower 80",
-      "wp60":"WordPower 80",
-      "wp42":"WordPower 80",
-      "wp20":"WordPower 80",
+      "wp60":"WordPower 60",
+      "wp42":"WordPower 42",
+      "wp20":"WordPower 20",
     };
   },
   vocab_name: function() {
