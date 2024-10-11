@@ -32,7 +32,11 @@ class DocsController < ApplicationController
     valid = false
     saved = false
     read_body = request.body.read
-    json = JSON.parse(read_body) rescue nil
+    json = params
+    if request.content_type == 'application/json'
+      json = JSON.parse(read_body) rescue nil
+    end
+
     if json && json['token'] == ENV['ANON_USER_TOKEN']
       valid = 'partial'
       if json['notification'] == 'anonymized_user_details'
