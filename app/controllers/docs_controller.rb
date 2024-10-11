@@ -1,4 +1,5 @@
 class DocsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     render :index
   end
@@ -17,12 +18,12 @@ class DocsController < ApplicationController
 
   def user_update
   # Typhoeus.post("https://www.openboardformat.org/user_update", body: {
-  #   uid: '238oty4t8a3',
-  #   details: {
+  #   content: {
+  #     uid: '238oty4t8a3',
   #     a: 1,
   #     b: 2,
   #     c: 'three'
-  #   },
+  # }.to_json,
   #   record: 'whatever',
   #   notification: 'anonymized_user_details',
   #   token: ENV['ANON_USER_TOKEN']
@@ -30,17 +31,26 @@ class DocsController < ApplicationController
 
     valid = false
     saved = false
-    if params['token'] == ENV['ANON_USER_TOKEN']
-      if params['notification'] == 'anonymized_user_details'
+    read_body = request.body.read
+    json = JSON.parse(read_body) rescue nil
+    if json && json['token'] == ENV['ANON_USER_TOKEN']
+      valid = 'partial'
+      if json['notification'] == 'anonymized_user_details'
         valid = true
+        content = JSON.parse(json['content']) if json['content'].is_a?(String)
+        content = json['content'] if json['content'].is_a?(Hash)
+        content ||= {}
+        content['source'] = "CoughDrop" if json['notification'] == 'anonymized_user_details'
         saved = !!Stash.create({
-          ref_id: (params['content'] || {})['uid'], 
+          ref_id: content['uid'], 
           data: {
-            record: params['record'],
-            content: params['content']
+            record: json['record'],
+            content: content
           }
         })
       end
+    else
+      Stash.create(data: read_body)
     end
     render json: {received: true, valid: valid, saved: saved}.to_json
   end
