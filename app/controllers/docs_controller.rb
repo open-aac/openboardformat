@@ -16,24 +16,24 @@ class DocsController < ApplicationController
   end
 
   def user_update
-  #   expect(args[:body]).to eq({
-  #     content: {
-  #       uid: ui.user_token(u),
-  #       details: {
-  #         primary_use: 'a',
-  #         age: 'b',
-  #         experience_level: 'c'
-  #       }
-  #     }.to_json,
-  #     notification: 'anonymized_user_details',
-  #     record: s.record_code,
-  #     token: ui.settings['token']
-  #   })
-  # end.and_return(OpenStruct.new(code: 200, body: 'asdf'))
+  # Typhoeus.post("https://www.openboardformat.org/user_update", body: {
+  #   uid: '238oty4t8a3',
+  #   details: {
+  #     a: 1,
+  #     b: 2,
+  #     c: 'three'
+  #   },
+  #   record: 'whatever',
+  #   notification: 'anonymized_user_details',
+  #   token: ENV['ANON_USER_TOKEN']
+  # }.to_json)
 
+    valid = false
+    saved = false
     if params['token'] == ENV['ANON_USER_TOKEN']
       if params['notification'] == 'anonymized_user_details'
-        Stash.create({
+        valid = true
+        saved = !!Stash.create({
           ref_id: (params['content'] || {})['uid'], 
           data: {
             record: params['record'],
@@ -42,6 +42,6 @@ class DocsController < ApplicationController
         })
       end
     end
-    render json: {received: true, saved: saved}.to_json
+    render json: {received: true, valid: valid, saved: saved}.to_json
   end
 end
