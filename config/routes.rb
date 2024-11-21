@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post '/converter/upload_params' => 'conversions#upload_params'
   post '/converter/convert' => 'conversions#convert'
   post '/converter/obfset' => 'conversions#obfset'
+  get '/converter/analyze' => 'conversions#analyze_preflight'
+  match '/converter/analyze', to: 'conversions#analyze', via: [:options]
   post '/converter/analyze' => 'conversions#analyze'
   post '/converter/validate' => 'conversions#validate'
   get '/converter/status' => 'conversions#status'

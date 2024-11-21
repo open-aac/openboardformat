@@ -53,8 +53,6 @@ class DocsController < ApplicationController
           }
         })
       end
-    else
-      Stash.create(data: read_body)
     end
     render json: {received: true, valid: valid, saved: saved}.to_json
   end

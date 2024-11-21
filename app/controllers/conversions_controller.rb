@@ -1,6 +1,7 @@
 require 'converter'
 
 class ConversionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   # internal api for getting S3 upload paramaters, checking status, and performing conversion
   def upload_params
     # TODO: some kind of throttling or captcha or something to prevent abuse
@@ -24,11 +25,21 @@ class ConversionsController < ApplicationController
   end
 
   def analyze
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     p = Progress.schedule(Converter, :analyze_obfset, params['url'], params['comp'])
     render json: p.status
   end
   
+  def analyze_preflight
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    render json: {ok: true}
+  end
+
   def status
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     p = Progress.find_by_code(params['code'])
     if p
       render json: p.status
