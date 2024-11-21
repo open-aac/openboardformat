@@ -119,6 +119,10 @@ class Progress < ActiveRecord::Base
     end
     return false
   end
+
+  def self.clear_old
+    Progress.where(['created_at < ?', 3.weeks.ago]).delete_all
+  end
   
   def self.process_queues
     schedules = []

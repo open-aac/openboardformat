@@ -27,8 +27,24 @@ class ConversionsController < ApplicationController
   def analyze
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-    p = Progress.schedule(Converter, :analyze_obfset, params['url'], params['comp'])
-    render json: p.status
+    # caching results for common vocabs
+    url = params['url'] || ''
+    comp = params['comp'] || ''
+    progress_id = nil
+    if !url.match(/http/) && !url.match(/http/)
+      progress_id = RedisInit.default.get("progress/#{url}/#{comp}")
+    end
+    progress = Progress.find_by(id: progress_id) if progress_id
+    new_progress = false
+    if !progress
+      progress = Progress.schedule(Converter, :analyze_obfset, url, comp)
+      new_progress = true
+    end
+    if !url.match(/http/) && !comp.match(/http/) && new_progress
+      RedisInit.default.setex("progress/#{url}/#{comp}", 5.days.to_i, progress.id.to_s)
+      Progress.schedule(Progress, :clear_old);
+    end
+    render json: progress.status
   end
   
   def analyze_preflight
