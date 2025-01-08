@@ -53,7 +53,7 @@ GEM
     ethon (0.16.0)
       ffi (>= 1.15.0)
     execjs (2.7.0)
-    ffi (1.17.1)
+    ffi (1.16.3)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     heroku-deflater (0.6.3)
@@ -211,6 +211,7 @@ PLATFORMS
 DEPENDENCIES
   aac-metrics
   dotenv
+  ffi (< 1.17.0)
   heroku-deflater
   obf
   pg

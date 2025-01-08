@@ -16,6 +16,7 @@ group :production do
   gem 'pg'
 end
 
+gem "ffi", "< 1.17.0"
 gem 'rails', '~> 5.0.3'
 gem 'typhoeus'
 gem 'sass-rails'
