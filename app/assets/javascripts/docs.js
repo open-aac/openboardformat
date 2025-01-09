@@ -199,6 +199,9 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
   },
   known_names: function() {
     return {
+      "ac99":"Alpah Core (Keyboard)",
+      "cbc":"CBoard Classic",
+      "cbu":"CBoard Universal Core",
       "l84f":"LAMP Words For Life 84",
       "pc36":"Project Core (36)",
       "qc24":"Quick Core 24",
@@ -207,6 +210,9 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       "qc84":"Quick Core 84",
       "qc112":"Quick Core 112",
       "sfy":"Speak For Yourself",
+      "sc12":"Super Core Learning",
+      "sc30":"Super Core 30",
+      "sc50":"Super Core 50",
       "vf24":"Vocal Flair 24",
       "vf40":"Vocal Flair 40",
       "vf60":"Vocal Flair 60",

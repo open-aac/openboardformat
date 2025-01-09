@@ -378,6 +378,10 @@
       {{t "Choose a comparison vocabulary" key='choose_comp'}}
       <select id='comp' class='form-control' style='display: inline; width: 200px;'>
         <option value="none">[ Choose a Vocabulary ]</option>
+        <option value="pc36">Project Core</option>
+        <option value="ac99">Alpha Core (Keyboard)</option>
+        <option value="cbc">CBoard Classic</option>
+        <option value="cbu">CBoard Universal Core</option>
         <option value="l84f">LAMP Words For Life 84</option>
         <option value="qc24">Quick Core 24</option>
         <option value="qc40">Quick Core 40</option>
@@ -385,11 +389,15 @@
         <option value="qc84">Quick Core 84</option>
         <option value="qc112">Quick Core 112</option>
         <option value="sfy">Speak For Yourself</option>
+        <option value="sc12">Super Core Learning</option>
+        <option value="sc30">Super Core 30</option>
+        <option value="sc50">Super Core 50</option>
         <option value="vf24">Vocal Flair 24</option>
         <option value="vf40">Vocal Flair 40</option>
         <option value="vf60">Vocal Flair 60</option>
         <option value="vf84">Vocal Flair 84</option>
         <option value="vf112">Vocal Flair 112</option>
+        <option value="vc12">Voco Chat 112</option>
         <option value="wp108">WordPower 108</option>
         <option value="wp80">WordPower 80</option>
         <option value="wp60">WordPower 60</option>
@@ -681,6 +689,10 @@
                 Other <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
+                <li><a href="#" {{action 'choose_vocab' 'pc36'}}>Project Core</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'ac99'}}>Alpha Core (Keyboard)</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'cbc'}}>CBoard Classic</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'cbu'}}>CBoard Universal Core</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'l84f'}}>LAMP Words For Life 84</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'qc24'}}>Quick Core 24</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'qc40'}}>Quick Core 40</a></li>
@@ -688,6 +700,9 @@
                 <li><a href="#" {{action 'choose_vocab' 'qc84'}}>Quick Core 84</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'qc112'}}>Quick Core 112</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'sfy'}}>Speak For Yourself</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'sc12'}}>Super Core Learning</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'sc30'}}>Super Core 30</a></li>
+                <li><a href="#" {{action 'choose_vocab' 'sc50'}}>Super Core 50</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'vf24'}}>Vocal Flair 24</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'vf40'}}>Vocal Flair 40</a></li>
                 <li><a href="#" {{action 'choose_vocab' 'vf60'}}>Vocal Flair 60</a></li>
@@ -766,24 +781,31 @@
                 -- <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#" {{action 'choose_vocab' 'l84f'}}>LAMP Words For Life 84</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'qc24'}}>Quick Core 24</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'qc40'}}>Quick Core 40</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'qc60'}}>Quick Core 60</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'qc84'}}>Quick Core 84</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'qc112'}}>Quick Core 112</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'sfy'}}>Speak For Yourself</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'vf24'}}>Vocal Flair 24</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'vf40'}}>Vocal Flair 40</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'vf60'}}>Vocal Flair 60</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'vf84'}}>Vocal Flair 84</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'vf112'}}>Vocal Flair 112</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'wp108'}}>WordPower 108</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'wp80'}}>WordPower 80</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'wp60'}}>WordPower 60</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'wp42'}}>WordPower 42</a></li>
-                <li><a href="#" {{action 'choose_vocab' 'wp20'}}>WordPower 20 Simply</a></li>
-              </ul>
+              <li><a href="#" {{action 'choose_vocab' 'pc36'}}>Project Core</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'ac99'}}>Alpha Core (Keyboard)</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'cbc'}}>CBoard Classic</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'cbu'}}>CBoard Universal Core</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'l84f'}}>LAMP Words For Life 84</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'qc24'}}>Quick Core 24</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'qc40'}}>Quick Core 40</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'qc60'}}>Quick Core 60</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'qc84'}}>Quick Core 84</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'qc112'}}>Quick Core 112</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'sfy'}}>Speak For Yourself</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'sc12'}}>Super Core Learning</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'sc30'}}>Super Core 30</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'sc50'}}>Super Core 50</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'vf24'}}>Vocal Flair 24</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'vf40'}}>Vocal Flair 40</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'vf60'}}>Vocal Flair 60</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'vf84'}}>Vocal Flair 84</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'vf112'}}>Vocal Flair 112</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'wp108'}}>WordPower 108</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'wp80'}}>WordPower 80</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'wp60'}}>WordPower 60</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'wp42'}}>WordPower 42</a></li>
+              <li><a href="#" {{action 'choose_vocab' 'wp20'}}>WordPower 20 Simply</a></li>
+            </ul>
             </div>
           </div>
           <div style='clear: left;'>

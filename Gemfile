@@ -16,7 +16,7 @@ group :production do
   gem 'pg'
 end
 
-gem "ffi", "< 1.17.0"
+gem "ffi", "< 1.17.0" # 1.17 was breaking for older rubygems
 gem 'rails', '~> 5.0.3'
 gem 'typhoeus'
 gem 'sass-rails'
