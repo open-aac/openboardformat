@@ -209,6 +209,7 @@ OpenBoards.AnalyzeController = Ember.Controller.extend({
       "qc60":"Quick Core 60",
       "qc84":"Quick Core 84",
       "qc112":"Quick Core 112",
+      "seq15":"Sequoia 15",
       "sfy":"Speak For Yourself",
       "sc12":"Super Core Learning",
       "sc30":"Super Core 30",
